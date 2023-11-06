@@ -29,7 +29,7 @@ function HomepageHeader():JSX.Element {
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title text--primary">
-        {translate({id: 'home.message', message: 'Ever® Team'},currentLocale)}
+        {translate({id: 'home.message', message: 'Ever® Teams'},currentLocale)}
         </Heading>
         <p className="hero__subtitle text--primary">
         {translate({id: 'home.description', message: "Track the progress of your teams' work in real time"},currentLocale)}
