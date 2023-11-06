@@ -1,0 +1,66 @@
+{
+  "name": "ever-teams-docs",
+  "version": "0.0.1",
+  "description": "Ever Teams Platform Documentation",
+  "license": "GPL-3.0",	
+	"homepage": "https://docs.ever.team",
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/ever-co/ever-teams-docs.git"
+	},
+  "private": true,
+  "author": {
+		"name": "Ever Co. LTD",
+		"email": "ever@ever.co",
+		"url": "https://ever.co"
+	},
+	"keywords": [],
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "yarn docusaurus start",
+    "build": "yarn docusaurus build",
+    "swizzle": "yarn docusaurus swizzle",
+    "deploy": "yarn docusaurus deploy",
+    "clear": "yarn docusaurus clear",
+    "serve": "yarn docusaurus serve",
+    "write-translations": "yarn docusaurus write-translations",
+    "write-heading-ids": "yarn docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@cmfcmf/docusaurus-search-local": "^1.1.0",
+    "@docusaurus/theme-search-algolia": "^3.0.0",
+    "@docusaurus/core": "3.0.0",
+    "@docusaurus/preset-classic": "3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^1.2.1",
+    "prism-react-renderer": "^2.1.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.0.0",
+    "@docusaurus/tsconfig": "3.0.0",
+    "@docusaurus/types": "3.0.0",
+    "typescript": "~5.2.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "husky": {
+		"hooks": {		  
+		}
+	},
+  "engines": {
+    "node": ">=18.0"
+  }
+}
