@@ -1,17 +1,30 @@
 {
-  "name": "docusaurus-website-typescript",
-  "version": "0.0.0",
+  "name": "ever-teams-docs",
+  "version": "0.0.1",
+  "description": "Ever Teams Platform Documentation",
+  "license": "GPL-3.0",	
+	"homepage": "https://docs.ever.team",
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/ever-co/ever-teams-docs.git"
+	},
   "private": true,
+  "author": {
+		"name": "Ever Co. LTD",
+		"email": "ever@ever.co",
+		"url": "https://ever.co"
+	},
+	"keywords": [],
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
+    "start": "yarn docusaurus start",
+    "build": "yarn docusaurus build",
+    "swizzle": "yarn docusaurus swizzle",
+    "deploy": "yarn docusaurus deploy",
+    "clear": "yarn docusaurus clear",
+    "serve": "yarn docusaurus serve",
+    "write-translations": "yarn docusaurus write-translations",
+    "write-heading-ids": "yarn docusaurus write-heading-ids",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -43,6 +56,10 @@
       "last 5 safari version"
     ]
   },
+  "husky": {
+		"hooks": {		  
+		}
+	},
   "engines": {
     "node": ">=18.0"
   }
