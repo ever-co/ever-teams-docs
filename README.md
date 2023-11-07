@@ -1,8 +1,10 @@
-[![DeepScan grade](https://deepscan.io/api/teams/3293/projects/25856/branches/814580/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3293&pid=25856&bid=814580)
-
 # Documentation for Ever Teams Platform
 
-The documentation will be available at **[https://docs.ever.team](https://docs.ever.team)**
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/ever)
+[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/ever-co/ever?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/evereq?utm_source=github&utm_medium=button&utm_term=evereq&utm_campaign=github)
+
+The documentation available at **[https://docs.ever.team](https://docs.ever.team)**
 
 This website was created with [Docusaurus](https://docusaurus.io).
 
@@ -24,9 +26,13 @@ View the full list of our [contributors](https://github.com/ever-co/ever-teams-d
 ## Contact Us
 
 -   [Ever.co Website Contact Us page](https://ever.co/contacts)
+-   [Spectrum Community](https://spectrum.chat/ever)
+-   [Gitter Chat](https://gitter.im/ever-co/ever)
 -   [CodeMentor](https://www.codementor.io/evereq)
--   For business inquiries: <mailto:ever@ever.co>
+-   For business inquiries: <mailto:teams@ever.co>
 -   Please report security vulnerabilities to <mailto:security@ever.co>
+-   [Ever Platform @ Twitter](https://twitter.com/ever_teams)
+-   [Ever Platform @ Facebook](https://www.facebook.com/everteamshq)
 
 ## Security
 
@@ -58,11 +64,14 @@ You should have received a copy of the relevant GNU Licenses along with this pro
 **Ever**® is a registered trademark of [Ever Co. LTD](https://ever.co).  
 **Ever® Teams™**, **Ever® Demand™**, **Ever® Gauzy™** and **Ever® OpenSaaS™** are all trademarks of [Ever Co. LTD](https://ever.co).
 
-The trademarks may only be used with the written permission of Ever Co. LTD. and may not be used to promote or otherwise market competitive products or services.
-
-All other brand and product names are trademarks, registered trademarks, or service marks of their respective holders.
+The trademarks may only be used with the written permission of Ever Co. LTD. and may not be used to promote or otherwise market competitive products or services. All other brand and product names are trademarks, registered trademarks, or service marks of their respective holders.
 
 #### Copyright © 2023-present, Ever Co. LTD. All rights reserved.
+
+[![Known Vulnerabilities](https://snyk.io/test/github/ever-co/ever-teams-docs/badge.svg?targetFile=website%2Fpackage.json)](https://snyk.io/test/github/ever-co/ever-teams-docs?targetFile=website%2Fpackage.json)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/16495a65fe7140f8aea7e5227ea13150)](https://app.codacy.com/gh/ever-co/ever-teams-docs/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![DeepScan grade](https://deepscan.io/api/teams/3293/projects/25856/branches/814580/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3293&pid=25856&bid=814580)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fever-co%2Fever-teams-docs.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fever-co%2Fever-teams-docs?ref=badge_shield)
 
 ## P.S.
 
