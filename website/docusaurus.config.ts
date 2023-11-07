@@ -115,6 +115,10 @@ const config: Config = {
             position: "right",
           },
           {
+            type: "search",
+            position: "left",
+          },
+          {
             type: "localeDropdown",
             position: "right",
           },
