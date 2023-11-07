@@ -25,16 +25,15 @@
 
   --ifm-background-surface-color: #2a2c39;
   --ifm-font-color-base: #fff;
-  --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
-    Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  --ifm-font-family-base: "Inter", "Helvetica", system-ui, -apple-system,
+    Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif,
+    BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
 body {
-  font-family: "Helvetica", sans-serif, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans";
+  font-family: var(----ifm-font-family-base);
 }
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
@@ -161,10 +160,6 @@ body {
   border-radius: 0;
   font-weight: 400;
 }
-[data-theme="dark"] .navbar,
-[data-theme="dark"] .navbar .navbar__inner {
-  background-color: var(--primary-color) !important;
-}
 .navbar__inner {
   margin: 0 auto;
   max-width: var(--ifm-container-width);
@@ -190,12 +185,14 @@ body {
 }
 .menu__link--active,
 .table-of-contents__link--active,
+.breadcrumbs__link,
 .breadcrumbs__item--active .breadcrumbs__link,
 .breadcrumbs__link svg {
-  /* --ifm-menu-color-active: #1b005d; */
+  --ifm-menu-color-active: #2a2c39;
   color: var(--ifm-menu-color-active);
 }
 [data-theme="dark"] .menu__link--active,
+[data-theme="dark"] .breadcrumbs__link,
 [data-theme="dark"] .breadcrumbs__item--active .breadcrumbs__link,
 [data-theme="dark"] .table-of-contents__link--active,
 [data-theme="dark"] .breadcrumbs__link svg {
@@ -277,4 +274,50 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Navbar */
+.navbar {
+  --ifm-navbar-padding-vertical: 0.5rem;
+  --ifm-navbar-padding-horizontal: 1rem;
+  --ifm-navbar-background-color: rgb(244, 248, 251);
+  --ifm-navbar-border: 1px solid 1px solid rgb(237, 242, 247);
+  --ifm-navbar-height: 3rem;
+  z-index: 10;
+  background-color: var(--ifm-navbar-background-color);
+  box-shadow: var(--ifm-navbar-shadow);
+  display: flex;
+  align-items: center;
+  height: var(--ifm-navbar-height);
+  padding: var(--ifm-navbar-padding-vertical)
+    var(--ifm-navbar-padding-horizontal);
+  border: var(--ifm-navbar-border);
+}
+@media only screen and (min-width: 640px) {
+  .navbar {
+    --ifm-navbar-padding-vertical: 0.75rem;
+    --ifm-navbar-padding-horizontal: 1.5rem;
+    --ifm-navbar-height: 4rem;
+  }
+}
+[data-theme="dark"] .navbar {
+  --ifm-navbar-background-color: rgb(29, 30, 48);
+  --ifm-navbar-border: 1px solid rgb(48 52 80);
+  /* background-color: rgb(29, 30, 48); */
+  border: var(--ifm-navbar-border);
+}
+[data-theme="dark"] body {
+  background-color: #14141f;
+}
+.container.padding-top--md.padding-bottom--lg {
+  padding: 1rem;
+  padding-top: 1rem;
+}
+@media (min-width: 640px) {
+  .container.padding-top--md.padding-bottom--lg {
+    padding-bottom: 3.5rem !important;
+    padding-top: 3.5rem !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

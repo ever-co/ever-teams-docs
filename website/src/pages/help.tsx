@@ -11,7 +11,7 @@ import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import HelpPageItems from "../components/HomepageFeatures/help";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 function HelpPageHeader() {
   const { i18n } = useDocusaurusContext();
