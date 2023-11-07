@@ -1,3 +1,5 @@
+[![DeepScan grade](https://deepscan.io/api/teams/3293/projects/25856/branches/814580/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3293&pid=25856&bid=814580)
+
 # Documentation for Ever Teams Platform
 
 The documentation will be available at **[https://docs.ever.team](https://docs.ever.team)**
