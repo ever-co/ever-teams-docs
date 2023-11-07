@@ -1,7 +1,7 @@
 ---
 id: support
 title: Support
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 ## Support Info
