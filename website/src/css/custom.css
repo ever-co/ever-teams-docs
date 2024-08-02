@@ -177,7 +177,10 @@ h6 {
   border-radius: 0.2rem;
   font-weight: 400;
 }
-
+a {
+  text-decoration: dotted;
+  color: rgb(103, 85, 201);
+}
 .navbar__inner {
   margin: 0 auto;
   max-width: var(--ifm-container-width);
@@ -268,13 +271,16 @@ footer .widget a:hover {
 p {
   color: #111;
 }
+.hero {
+  margin-block: 2.5rem;
+}
 .hero .button {
   text-transform: capitalize;
   font-size: 16px;
   padding-inline: 2rem;
   padding-block: 0.75rem;
   color: #fff;
-  background-color: rgb(0, 128, 255);
+  background-color: rgb(103, 85, 201);
   border-radius: 1.5rem;
   border: none;
 }
@@ -292,6 +298,7 @@ img {
   border-style: none;
   box-sizing: content-box;
   max-width: 100%;
+  object-fit: contain;
 }
 .navbar__logo img {
   object-fit: contain;
@@ -383,12 +390,14 @@ img {
   height: 100%;
   display: flex;
   flex-direction: column;
+  row-gap: 1.5rem;
 }
 .docItemContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocItem-Layout-styles-module
   .theme-doc-footer,
 .docItemContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocItem-Layout-styles-module
   .pagination-nav {
   margin-top: auto;
+  margin-top: 1.5rem;
 }
 [data-theme="dark"] #__docusaurus {
   background-color: rgb(9, 0, 20);
@@ -587,4 +596,55 @@ img {
 html[data-theme="dark"] .header-github-link:before {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
     no-repeat;
+}
+.navbar__item.dropdown.dropdown--hoverable.dropdown--right {
+  display: flex;
+  align-items: center;
+}
+.header-locale-link {
+  font-size: 0;
+}
+
+.header-locale-link::before {
+  content: "";
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M478.33 433.6l-90-218a22 22 0 00-40.67 0l-90 218a22 22 0 1040.67 16.79L316.66 406h102.67l18.33 44.39A22 22 0 00458 464a22 22 0 0020.32-30.4zM334.83 362L368 281.65 401.17 362zM267.84 342.92a22 22 0 00-4.89-30.7c-.2-.15-15-11.13-36.49-34.73 39.65-53.68 62.11-114.75 71.27-143.49H330a22 22 0 000-44H214V70a22 22 0 00-44 0v20H54a22 22 0 000 44h197.25c-9.52 26.95-27.05 69.5-53.79 108.36-31.41-41.68-43.08-68.65-43.17-68.87a22 22 0 00-40.58 17c.58 1.38 14.55 34.23 52.86 83.93.92 1.19 1.83 2.35 2.74 3.51-39.24 44.35-77.74 71.86-93.85 80.74a22 22 0 1021.07 38.63c2.16-1.18 48.6-26.89 101.63-85.59 22.52 24.08 38 35.44 38.93 36.1a22 22 0 0030.75-4.9z"></path></svg>')
+    no-repeat;
+}
+
+html[data-theme="dark"] .header-locale-link:before {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M478.33 433.6l-90-218a22 22 0 00-40.67 0l-90 218a22 22 0 1040.67 16.79L316.66 406h102.67l18.33 44.39A22 22 0 00458 464a22 22 0 0020.32-30.4zM334.83 362L368 281.65 401.17 362zM267.84 342.92a22 22 0 00-4.89-30.7c-.2-.15-15-11.13-36.49-34.73 39.65-53.68 62.11-114.75 71.27-143.49H330a22 22 0 000-44H214V70a22 22 0 00-44 0v20H54a22 22 0 000 44h197.25c-9.52 26.95-27.05 69.5-53.79 108.36-31.41-41.68-43.08-68.65-43.17-68.87a22 22 0 00-40.58 17c.58 1.38 14.55 34.23 52.86 83.93.92 1.19 1.83 2.35 2.74 3.51-39.24 44.35-77.74 71.86-93.85 80.74a22 22 0 1021.07 38.63c2.16-1.18 48.6-26.89 101.63-85.59 22.52 24.08 38 35.44 38.93 36.1a22 22 0 0030.75-4.9z" fill="white"></path></svg>')
+    no-repeat;
+}
+html[data-theme="light"] .dropdown__menu {
+  background-color: white;
+}
+html[data-theme="dark"] .dropdown__menu {
+  background-color: rgb(29, 30, 48);
+}
+.dropdown__menu .dropdown__link {
+  font-weight: 500;
+}
+html[data-theme="light"] .dropdown__menu .dropdown__link {
+  color: var(--title-color);
+}
+.theme-doc-markdown img {
+  max-width: 1080px;
+  width: 100%;
+  height: 100%;
+  max-height: 850px;
+  object-fit: contain;
+}
+
+.theme-doc-markdown p:has(img) {
+  margin-block: 1.5rem;
+}
+pre {
+  margin-block: 0.5rem;
+  min-height: 65px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+html[data-theme="dark"] pre {
+  background-color: #13171c;
 }

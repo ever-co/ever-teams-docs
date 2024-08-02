@@ -69,15 +69,7 @@ const config: Config = {
           // Please change this to your repo.
           path: "../docs/",
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/ever-co/ever-teams/tree/main/",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -94,8 +86,6 @@ const config: Config = {
 
       colorMode: {
         defaultMode: "dark",
-        disableSwitch: false,
-        respectPrefersColorScheme: false,
       },
       navbar: {
         style: "dark",
@@ -108,18 +98,19 @@ const config: Config = {
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
-            position: "right",
+            position: "left",
             label: "Docs",
           },
-          { to: "/help", label: "Help", position: "right" },
+          { to: "/help", label: "Help", position: "left" },
           {
             to: "/docs/support",
             label: "Support",
-            position: "right",
+            position: "left",
           },
           {
             type: "localeDropdown",
             position: "right",
+            className: "header-locale-link",
           },
           {
             href: "https://github.com/ever-co/ever-teams",
