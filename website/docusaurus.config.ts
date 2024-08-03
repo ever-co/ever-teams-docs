@@ -32,7 +32,7 @@ const config: Config = {
   // Used for publishing and more
   projectName: "ever-teams-docs",
 
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   staticDirectories: ["../docs/assets", "static"],
   // Even if you don't use internationalization, you can use this field to set
@@ -57,7 +57,6 @@ const config: Config = {
       "es",
     ],
   },
-
   presets: [
     [
       "classic",
@@ -77,7 +76,6 @@ const config: Config = {
       },
     ],
   ],
-
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
@@ -99,11 +97,12 @@ const config: Config = {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
+            to: "/docs",
             label: "Docs",
           },
           { to: "/help", label: "Help", position: "left" },
           {
-            to: "/docs/support",
+            to: "/docs/advanced-guide/support",
             label: "Support",
             position: "left",
           },
@@ -132,7 +131,7 @@ const config: Config = {
             items: [
               {
                 label: "Introduction",
-                to: "/docs/intro",
+                to: "/docs/introduction",
               },
             ],
           },

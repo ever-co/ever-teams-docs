@@ -648,3 +648,17 @@ pre {
 html[data-theme="dark"] pre {
   background-color: #13171c;
 }
+.card {
+  background-color: #fff;
+  border: 1px solid #dee3ea;
+  border: none;
+  transition: all 0.35s;
+}
+.card:hover {
+  border-color: #d1d7e0 !important;
+}
+html[data-theme="dark"] .card {
+  background-color: #13171c !important;
+  border: none;
+  transition: all 0.35s;
+}
