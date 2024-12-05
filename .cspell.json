@@ -4,7 +4,13 @@
 	"caseSensitive": false,
 	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
 	"words": [
-		"clsx","cmfcmf","Gitter","noopener","octicon","typecheck","Userspage"
+		"clsx",
+		"cmfcmf",
+		"Gitter",
+		"noopener",
+		"octicon",
+		"typecheck",
+		"Userspage"
 	],
 	"useGitignore": true,
 	"ignorePaths": [
@@ -25,6 +31,7 @@
 		".whitesource",
 		"**/node_modules/**",
 		"**/.docusaurus/**",
+		"/**/docs/i18n/**",
 		"**/build/**",
 		"**/vscode-extension/**",
 		"/**/package-lock.json",
