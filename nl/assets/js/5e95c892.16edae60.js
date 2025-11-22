@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkever_teams_docs=self.webpackChunkever_teams_docs||[]).push([[9647],{7121:(e,s,r)=>{r.r(s),r.d(s,{default:()=>l});r(6540);var a=r(4164),c=r(5500),t=r(7559),u=r(2831),d=r(2186),n=r(4848);function l(e){return(0,n.jsx)(c.e3,{className:(0,a.A)(t.G.wrapper.docsPages),children:(0,n.jsx)(d.A,{children:(0,u.v)(e.route.routes)})})}}}]);
