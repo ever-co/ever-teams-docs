@@ -10,6 +10,10 @@ const HAS_ALGOLIA_CREDENTIALS =
 require("dotenv").config();
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
+  themes: ["@docusaurus/theme-mermaid"],
+  markdown: {
+    mermaid: true,
+  },
   plugins: [
     SENTRY_DNS &&
       process.env.NODE_ENV === "production" && [
