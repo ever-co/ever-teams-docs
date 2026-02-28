@@ -1,21 +1,37 @@
 ---
-id: deployment
 title: Deployment
 sidebar_label: Deployment
-sidebar_position: 4
+sidebar_position: 6
+description: Deploy Ever Teams to Docker, Vercel, DigitalOcean, and other platforms.
 ---
 
-import DocCardList from '@theme/DocCardList';
+# Deployment
 
-# Deployment Guide
+Ever Teams can be deployed in multiple ways — from one-click cloud deployments to self-hosted Docker setups.
 
-This section covers everything you need to deploy Ever Teams in different environments, from local Docker setups to production deployments.
+## Deployment Options
 
-## What You'll Learn
+| Method                                             | Best For                            | Time to Deploy |
+| -------------------------------------------------- | ----------------------------------- | -------------- |
+| **[Docker Quick Start](./docker-quick-start)**     | Quick exploration, self-hosted demo | ⚡ 5 minutes   |
+| **[Docker Production](./docker-dev-vs-prod)**      | Self-hosted production              | 🔧 15 minutes  |
+| **[Vercel](./cloud-platforms#vercel)**             | Serverless, zero-ops                | ⚡ 2 minutes   |
+| **[DigitalOcean](./cloud-platforms#digitalocean)** | Full control, VPS                   | 🔧 30 minutes  |
+| **[Render](./cloud-platforms#render)**             | Simple PaaS                         | ⚡ 5 minutes   |
+| **[Railway](./cloud-platforms#railway)**           | Modern PaaS                         | ⚡ 5 minutes   |
+| **[Fly.io](./cloud-platforms#fly)**                | Edge deployment                     | 🔧 10 minutes  |
+| **[Other](./cloud-platforms)**                     | Netlify, Heroku, Koyeb, Northflank  | Varies         |
 
-- **Docker Quick Start**: Get up and running with Docker in minutes
-- **Development vs Production**: Understand the differences between dev and prod Docker configurations
-- **Deployment Secrets**: Configure environment variables and secrets for different deployment scenarios
+## Prerequisites
 
-<DocCardList />
+For all deployment methods, you need:
 
+- Access to an **Ever Gauzy API** instance (production at `https://api.ever.team` or self-hosted)
+- **Environment variables** configured (see [Configuration](../getting-started/configuration))
+
+## Guides
+
+- **[Docker Quick Start](./docker-quick-start)** — Get running with Docker Compose in minutes
+- **[Docker Environments](./docker-dev-vs-prod)** — Development vs. production Docker configurations
+- **[Deployment Secrets](./deployment-secrets)** — Managing secrets and sensitive configuration
+- **[Cloud Platforms](./cloud-platforms)** — One-click deployment to Vercel, Render, Railway, and more
