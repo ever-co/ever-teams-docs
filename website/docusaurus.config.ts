@@ -10,9 +10,13 @@ const HAS_ALGOLIA_CREDENTIALS =
 require("dotenv").config();
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
+  onBrokenLinks: "warn",
   themes: ["@docusaurus/theme-mermaid"],
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
   plugins: [
     SENTRY_DNS &&
@@ -48,8 +52,7 @@ const config: Config = {
   // Used for publishing and more
   projectName: "ever-teams-docs",
 
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+
   staticDirectories: ["./docs/assets", "static"],
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -79,13 +82,13 @@ const config: Config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
-          exclude: ["**/i18n/**"],
+          routeBasePath: '/',
+          exclude: ["**/i18n/**", "**/assets/**"],
           sidebarPath: "./sidebars.ts",
-          // Please change this to your repo.
           path: "./docs/",
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/ever-co/ever-teams/tree/main/",
+          editUrl: "https://github.com/ever-co/ever-teams-docs/tree/master/website/",
         },
+        blog: false,
         theme: {
           customCss: "./src/css/custom.css",
         },
@@ -113,12 +116,10 @@ const config: Config = {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            to: "/docs",
             label: "Docs",
           },
-          { to: "/help", label: "Help", position: "left" },
           {
-            to: "/docs/advanced-guide/support",
+            to: "/support",
             label: "Support",
             position: "left",
           },
@@ -147,7 +148,19 @@ const config: Config = {
             items: [
               {
                 label: "Introduction",
-                to: "/docs/introduction",
+                to: "/",
+              },
+              {
+                label: "Quick Start",
+                to: "/getting-started/installation",
+              },
+              {
+                label: "Architecture",
+                to: "/architecture/overview",
+              },
+              {
+                label: "API Reference",
+                to: "/api-reference",
               },
             ],
           },
@@ -155,24 +168,20 @@ const config: Config = {
             title: "Community",
             items: [
               {
-                label: "User Showcases",
-                href: "/users",
+                label: "Discord",
+                href: "https://discord.com/invite/msqRJ4w",
               },
               {
                 label: "Stack Overflow",
                 href: "https://stackoverflow.com/questions/tagged/ever-teams",
               },
               {
-                label: "Gitter Chat",
-                href: "https://gitter.im/ever-co/ever-teams",
-              },
-              {
-                label: "Discord Chat",
-                href: "https://discord.com/invite/msqRJ4w",
-              },
-              {
                 label: "Twitter",
                 href: "https://twitter.com/gauzyplatform",
+              },
+              {
+                label: "Gitter Chat",
+                href: "https://gitter.im/ever-co/ever-teams",
               },
             ],
           },
@@ -184,8 +193,16 @@ const config: Config = {
                 href: "https://github.com/ever-co/ever-teams",
               },
               {
+                label: "Website",
+                href: "https://ever.team",
+              },
+              {
+                label: "Demo",
+                href: "https://demo.ever.team",
+              },
+              {
                 html: `
-                <div class="widget"><a class="btn" href="https://github.com/ever-co/ever-teams" rel="noopener" target="_blank" aria-label="Star this project on GitHub"><svg viewBox="0 0 16 16" width="14" height="14" class="octicon octicon-star" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path></svg>&nbsp;<span>Star</span></a><a class="social-count" href="https://github.com/ever-co/ever-teams/stargazers" rel="noopener" target="_blank" aria-label="100+ stargazers on GitHub">100</a></div>`,
+                <div class="widget"><a class="btn" href="https://github.com/ever-co/ever-teams" rel="noopener" target="_blank" aria-label="Star this project on GitHub"><svg viewBox="0 0 16 16" width="14" height="14" class="octicon octicon-star" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path></svg>&nbsp;<span>Star</span></a><a class="social-count" href="https://github.com/ever-co/ever-teams/stargazers" rel="noopener" target="_blank" aria-label="100+ stargazers on GitHub">100+</a></div>`,
               },
             ],
           },
