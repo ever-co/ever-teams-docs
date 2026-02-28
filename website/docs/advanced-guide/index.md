@@ -5,6 +5,6 @@ sidebar_label: Advanced Guide
 sidebar_position: 3
 ---
 
-import DocCardList from '@theme/DocCardList';
+# Advanced Guide
 
-<DocCardList />
+- [Support](./support.md)
