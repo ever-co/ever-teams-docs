@@ -29,12 +29,12 @@ Ever Teams supports one-click deployment to several cloud platforms.
 
 ### Key Settings
 
-| Setting          | Value                            |
-| ---------------- | -------------------------------- |
-| Root Directory   | `apps/web`                       |
-| Build Command    | `yarn build`                     |
-| Install Command  | `yarn install --frozen-lockfile` |
-| Output Directory | `.next`                          |
+| Setting          | Value                                                      |
+| ---------------- | ---------------------------------------------------------- |
+| Root Directory   | `apps/web`                                                 |
+| Build Command    | `yarn build`                                               |
+| Install Command  | `yarn install --network-timeout 1000000 --frozen-lockfile` |
+| Output Directory | `.next`                                                    |
 
 ## DigitalOcean
 
