@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:1
+# Multi-stage build for the Ever Teams Docusaurus docs site.
+# Build context is the repo `website/` subdir (Kaniko --context-sub-path=website).
+
+# ---- Build stage ----
+FROM node:20-alpine AS builder
+
+# Optional npm auth for any private deps (harmless if unused).
+ARG NPM_TOKEN=""
+WORKDIR /app
+
+# Enable corepack/yarn (classic yarn.lock present).
+RUN corepack enable || true
+
+# Install dependencies first for better layer caching.
+COPY package.json yarn.lock ./
+# Public npm registry serves all deps; add an auth line only if a token is provided.
+RUN if [ -n "$NPM_TOKEN" ]; then \
+      printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_TOKEN" >> .npmrc; \
+    fi && \
+    yarn install --frozen-lockfile --network-timeout 600000
+
+# Copy the rest of the source and build the static site.
+COPY . .
+ENV NODE_ENV=production
+RUN yarn build
+
+# ---- Serve stage ----
+FROM nginx:alpine
+# Docusaurus emits a fully static, multi-page site into ./build
+COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
