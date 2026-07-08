@@ -23,7 +23,7 @@ RUN if [ -n "$NPM_TOKEN" ]; then \
 # Copy the rest of the source and build the static site.
 COPY . .
 ENV NODE_ENV=production
-RUN yarn build
+RUN yarn build --locale en
 
 # ---- Serve stage ----
 FROM nginx:alpine
