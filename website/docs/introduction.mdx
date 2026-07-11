@@ -7,7 +7,7 @@ slug: /
 description: Ever Teams — the open-source Work and Project Management Platform for time tracking, task management, team collaboration, and more.
 ---
 
-import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from "react-player/lazy";
 
 # Ever Teams — Open Work and Project Management Platform
 
@@ -15,7 +15,11 @@ Welcome to the official **Ever® Teams™** documentation. Ever Teams is a compr
 
 > **Real-Time Clarity, Real-Time Reality™** — Track the progress of your teams' work in real time.
 
-<ReactPlayer url='https://www.youtube.com/watch?v=vfz1gQiM-VU' width="100%" height="450px" />
+<ReactPlayer
+  url="https://www.youtube.com/watch?v=vfz1gQiM-VU"
+  width="100%"
+  height="450px"
+/>
 
 ---
 
@@ -34,12 +38,14 @@ Ever Teams provides an all-in-one solution that replaces the need for multiple d
 ## Key Features
 
 ### 🕐 Time Management
+
 - **Real-time Timer** — Start/stop timers with one click, track time against tasks and projects.
 - **Activity Tracking** — Monitor application & URL activity, screenshots, and idle detection.
 - **Timesheet Management** — Submit, review, and approve timesheets with configurable workflows.
 - **Time Limits & Budgets** — Set daily/weekly time limits and track against budgets.
 
 ### 📋 Task & Project Management
+
 - **Task Management** — Create, assign, prioritize, and track tasks with custom statuses, sizes, and priorities.
 - **Project Management** — Organize work into projects with dedicated views and settings.
 - **Kanban Board** — Visual drag-and-drop task boards for agile workflows.
@@ -48,6 +54,7 @@ Ever Teams provides an all-in-one solution that replaces the need for multiple d
 - **Issue Types & Labels** — Categorize with custom issue types, tags, and labels.
 
 ### 👥 Team Collaboration
+
 - **Teams & Organizations** — Create and manage multiple organizations and teams.
 - **Video Conferencing** — Built-in video meetings powered by Jitsi or LiveKit.
 - **Roles & Permissions** — Granular role-based access control for team members.
@@ -55,16 +62,19 @@ Ever Teams provides an all-in-one solution that replaces the need for multiple d
 - **Invite System** — Invite team members via email with configurable roles.
 
 ### 📊 Analytics & Reporting
+
 - **Dashboard** — At-a-glance overview of team activity and metrics.
 - **Activity Reports** — Detailed reports on time, tasks, and productivity.
 - **Export** — Export data for external analysis.
 
 ### 🔗 Integrations
+
 - **GitHub** — Sync issues and pull requests bidirectionally.
 - **JIRA** — Import and sync issues from Atlassian JIRA.
 - **GitLab, Bitbucket** — Additional VCS integrations (planned/available).
 
 ### 🎨 User Experience
+
 - **Dark / Light / Black Themes** — Multiple theme options for comfortable work.
 - **Internationalization** — Available in 13+ languages (English, French, Arabic, Bulgarian, Chinese, Dutch, German, Hebrew, Italian, Polish, Portuguese, Russian, Spanish).
 - **Responsive Design** — Fully responsive web interface built with Tailwind CSS.
@@ -75,38 +85,35 @@ Ever Teams provides an all-in-one solution that replaces the need for multiple d
 
 Ever Teams is available across multiple platforms:
 
-| Platform | Technology | Description |
-|----------|-----------|-------------|
-| **Web App** | Next.js (React) | Full-featured web application at [app.ever.team](https://app.ever.team) |
-| **Mobile App** | Expo (React Native) | Native iOS and Android applications |
-| **Desktop App** | Electron | Desktop timer application for Windows, macOS, and Linux |
-| **Browser Extension** | Plasmo | Chrome/Firefox extension for quick time tracking |
-| **Server Web** | Electron + Next.js | Self-contained web server distribution |
+| Platform              | Technology          | Description                                                             |
+| --------------------- | ------------------- | ----------------------------------------------------------------------- |
+| **Web App**           | Next.js (React)     | Full-featured web application at [app.ever.team](https://app.ever.team) |
+| **Mobile App**        | Expo (React Native) | Native iOS and Android applications                                     |
+| **Desktop App**       | Electron            | Desktop timer application for Windows, macOS, and Linux                 |
+| **Browser Extension** | Plasmo              | Chrome/Firefox extension for quick time tracking                        |
+| **Server Web**        | Electron + Next.js  | Self-contained web server distribution                                  |
 
 ---
 
 ## Architecture at a Glance
 
-```
-┌─────────────────────────────────────────────────┐
-│                  Ever Teams                      │
-│  ┌──────┐ ┌────────┐ ┌─────────┐ ┌───────────┐ │
-│  │ Web  │ │ Mobile │ │ Desktop │ │ Extension │ │
-│  │(Next)│ │ (Expo) │ │(Electrn)│ │ (Plasmo)  │ │
-│  └──┬───┘ └───┬────┘ └────┬────┘ └─────┬─────┘ │
-│     └─────────┴───────────┴─────────────┘       │
-│                     │                            │
-│            ┌────────▼────────┐                   │
-│            │  Ever Gauzy API │                   │
-│            │  (NestJS/REST/  │                   │
-│            │   GraphQL)      │                   │
-│            └────────┬────────┘                   │
-│     ┌───────┬───────┼───────┬────────┐           │
-│  ┌──▼──┐┌──▼──┐┌───▼──┐┌──▼───┐┌───▼────┐      │
-│  │ DB  ││Redis││MinIO ││Cube  ││Elastic │      │
-│  │(PG) ││     ││(S3)  ││(OLAP)││Search  │      │
-│  └─────┘└─────┘└──────┘└──────┘└────────┘      │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph EverTeams["Ever Teams"]
+        direction TB
+        Web["Web (Next.js)"]
+        Mobile["Mobile (Expo)"]
+        Desktop["Desktop (Electron)"]
+        Extension["Extension (Plasmo)"]
+
+        Web & Mobile & Desktop & Extension --> API["Ever Gauzy API<br/>(NestJS / REST / GraphQL)"]
+
+        API --> DB["Database<br/>(PostgreSQL)"]
+        API --> Redis["Redis"]
+        API --> MinIO["MinIO (S3)"]
+        API --> Cube["Cube (OLAP)"]
+        API --> Elastic["Elastic<br/>Search"]
+    end
 ```
 
 ---
