@@ -11,16 +11,33 @@ Ever Teams communicates with the Ever Gauzy backend through a Next.js API proxy 
 
 ## Authentication
 
-| Route                            | Method | Description                                      |
-| -------------------------------- | ------ | ------------------------------------------------ |
-| `/api/auth/signin/email`         | POST   | Sign in with email (send magic code)             |
-| `/api/auth/signin/email/confirm` | POST   | Confirm magic code sign-in                       |
-| `/api/auth/signin/workspace`     | POST   | Sign in to a specific workspace                  |
-| `/api/auth/register`             | POST   | Register a new account                           |
-| `/api/auth/refresh`              | POST   | Refresh JWT token                                |
-| `/api/auth/verify/code`          | POST   | Verify authentication code                       |
-| `/api/auth/verify/resend`        | POST   | Resend verification code                         |
-| `/api/auth/social/login`         | POST   | Social login (Google, GitHub, Facebook, Twitter) |
+| Route                             | Method | Description                                      |
+| --------------------------------- | ------ | ------------------------------------------------ |
+| `/api/auth/signin/email`          | POST   | Sign in with email (send magic code)             |
+| `/api/auth/signin/email/confirm`  | POST   | Confirm magic code sign-in                       |
+| `/api/auth/signin/email-password` | POST   | Sign in with email + password                    |
+| `/api/auth/signin/workspace`      | POST   | Sign in to a specific workspace                  |
+| `/api/auth/register`              | POST   | Register a new account                           |
+| `/api/auth/refresh`               | POST   | Refresh JWT token                                |
+| `/api/auth/verify/code`           | POST   | Verify authentication code                       |
+| `/api/auth/verify/resend`         | POST   | Resend verification code                         |
+| `/api/auth/social/login`          | POST   | Social login (Google, GitHub, Facebook, Twitter) |
+
+### Direct Gauzy API Auth Endpoints
+
+These endpoints are called directly on the Gauzy API (not through the Next.js proxy):
+
+| Route                         | Method | Auth   | Description                    |
+| ----------------------------- | ------ | ------ | ------------------------------ |
+| `/auth/request-password`      | POST   | Public | Request password reset email   |
+| `/auth/reset-password`        | POST   | Public | Reset password with token      |
+| `/auth/signin.email`          | POST   | Public | Send magic code (direct)       |
+| `/auth/signin.email/confirm`  | POST   | Public | Confirm magic code (direct)    |
+| `/auth/signin.email.password` | POST   | Public | Sign in with password (direct) |
+| `/auth/signin.workspace`      | POST   | Public | Sign into workspace (direct)   |
+| `/auth/refresh-token`         | POST   | Public | Refresh JWT tokens             |
+
+See [Authentication](../features/authentication) and [Forgot Password](../features/forgot-password) for full flow documentation.
 
 ## Timer
 
@@ -128,15 +145,15 @@ Ever Teams communicates with the Ever Gauzy backend through a Next.js API proxy 
 
 ## Other
 
-| Route               | Method | Description                  |
-| ------------------- | ------ | ---------------------------- |
-| `/api/languages`    | GET    | Available languages          |
-| `/api/image-assets` | GET    | Image asset management       |
-| `/api/email-reset`  | POST   | Password/email reset         |
-| `/api/subscribe`    | POST   | Newsletter subscription      |
-| `/api/health`       | GET    | Health check endpoint        |
-| `/api/livekit`      | POST   | Generate LiveKit room tokens |
-| `/api/public`       | GET    | Public team data             |
+| Route               | Method | Description                                                               |
+| ------------------- | ------ | ------------------------------------------------------------------------- |
+| `/api/languages`    | GET    | Available languages                                                       |
+| `/api/image-assets` | GET    | Image asset management                                                    |
+| `/api/email-reset`  | POST   | Password/email reset (see [Forgot Password](../features/forgot-password)) |
+| `/api/subscribe`    | POST   | Newsletter subscription                                                   |
+| `/api/health`       | GET    | Health check endpoint                                                     |
+| `/api/livekit`      | POST   | Generate LiveKit room tokens                                              |
+| `/api/public`       | GET    | Public team data                                                          |
 
 ## Backend API Documentation
 
