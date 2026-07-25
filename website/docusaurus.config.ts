@@ -108,8 +108,9 @@ const config: Config = {
         style: "dark",
         logo: {
           alt: "Ever® Teams Logo",
-          srcDark: "/img/ever-team.svg",
-          src: "img/ever-team-dark.svg",
+          srcDark: "/img/ever-teams-logo-dark.svg",
+          src: "/img/ever-teams-logo.svg",
+          height: 32,
         },
         items: [
           {
