@@ -64,6 +64,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Kit",
+      items: ["kit/index"],
+    },
+    {
+      type: "category",
       label: "Deployment",
       items: [
         "deployment/index",
