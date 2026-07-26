@@ -19,6 +19,8 @@ Ever Teams is available across multiple platforms. Each application is a separat
 | **[Browser Extension](./extensions)** | `apps/extensions`                  | Plasmo                | ✅ Production |
 | **[Server Web](./server-web)**        | `apps/server-web`                  | Electron + Next.js    | ✅ Production |
 
+> To embed work & time tracking natively inside your own platform, see [Ever Teams Kit](../kit/index.md).
+
 ## Shared Code
 
 All applications share code through the `packages/` directory:
