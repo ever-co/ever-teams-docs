@@ -1,1 +1,42 @@
-/* Shared styles for remaining pages (users, help) */
+/**
+ * Shared styles for the standalone pages (users, help).
+ * Consumed via `styles.heroBanner` / `styles.buttons` in the page components.
+ */
+
+.heroBanner {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem);
+  text-align: left;
+}
+
+/* Soft brand wash behind the hero — decorative only. */
+.heroBanner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    60rem 24rem at 15% 0%,
+    var(--et-accent-subtle),
+    transparent 70%
+  );
+}
+
+.heroBanner > * {
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+@media (max-width: 996px) {
+  .heroBanner {
+    padding: clamp(2rem, 8vw, 3rem) 0 2rem;
+  }
+}
