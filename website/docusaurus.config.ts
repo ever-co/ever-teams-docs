@@ -37,6 +37,25 @@ const config: Config = {
   ],
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [{ src: "https://buttons.github.io/buttons.js", async: true }],
+  // Preconnect early so the webfont request starts before CSS is parsed.
+  headTags: [
+    {
+      tagName: "link",
+      attributes: { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
+      },
+    },
+  ],
+  // `display=swap` avoids invisible text while the font loads (FOIT).
+  stylesheets: [
+    "https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
+  ],
   title: "Ever Teams", // Title for your website.
   tagline: "Open Work and Project Management Platform",
   favicon: "img/favicon.ico",
@@ -105,7 +124,9 @@ const config: Config = {
         defaultMode: "dark",
       },
       navbar: {
-        style: "dark",
+        // No forced `style` — the navbar follows the active colour mode so
+        // light and dark are designed as a pair rather than one inverted.
+        hideOnScroll: false,
         logo: {
           alt: "Ever® Teams Logo",
           srcDark: "/img/ever-teams-logo-dark.svg",
@@ -120,7 +141,9 @@ const config: Config = {
             label: "Docs",
           },
           {
-            to: "/support",
+            // The doc is served from its folder path; `/support` does not exist
+            // and was reported broken on every page by the build.
+            to: "/advanced-guide/support",
             label: "Support",
             position: "left",
           },
@@ -128,17 +151,31 @@ const config: Config = {
             type: "localeDropdown",
             position: "right",
             className: "header-locale-link",
+            "aria-label": "Change language",
           },
           {
             href: "https://github.com/ever-co/ever-teams",
             label: "GitHub",
             position: "right",
             className: "header-github-link",
+            "aria-label": "Ever Teams on GitHub",
+          },
+          {
+            // Placed explicitly: without this item the search bar is appended
+            // last, pushing the CTA in front of it.
+            type: "search",
+            position: "right",
+            className: "navbar-search",
+          },
+          {
+            href: "https://app.ever.team",
+            label: "Get Started",
+            position: "right",
+            className: "navbar-cta",
           },
         ],
       },
       footer: {
-        style: "dark",
         logo: {
           src: "/img/ever-team.svg",
           height: 40,
@@ -247,7 +284,14 @@ const config: Config = {
         : undefined,
       prism: {
         theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        // Higher contrast on the deep surface than dracula, and the token hues
+        // stay legible against our code-block background token.
+        darkTheme: prismThemes.oneDark,
+      },
+      // Keep the right rail focused: h2/h3 only, so it stays scannable.
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 3,
       },
     },
 };
