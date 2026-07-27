@@ -1,0 +1,415 @@
+/**
+ * Support — page-scoped presentation.
+ *
+ * Every colour, radius and duration is a `--et-*` token from
+ * `src/css/custom.css`, so light and dark are inherited rather than redefined
+ * and nothing here needs a second set of values.
+ *
+ * Structure over decoration: the channel router and plan tiers are decision
+ * surfaces, so they get cards. Everything else stays typographic.
+ */
+
+/* -----------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.eyebrow {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--et-accent);
+  font-size: var(--et-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.15rem + 2.4vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  color: var(--et-text);
+  text-wrap: balance;
+}
+
+.heroLead {
+  margin: 1rem 0 0;
+  max-width: 56ch;
+  font-size: var(--et-text-lg);
+  line-height: 1.6;
+  color: var(--et-text-secondary);
+}
+
+/* Section standfirst — sits directly under an h2. */
+.lead {
+  margin: 0 0 1.25rem;
+  max-width: 62ch;
+  color: var(--et-text-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+   Headings
+
+   The page content lives inside `.page`, so the site-wide `.markdown > h2`
+   rule no longer matches (h2 is a child of the wrapper, not of `.markdown`).
+   Restate it here so this page keeps the same section rhythm as every other
+   doc instead of falling back to the bare heading defaults.
+   -------------------------------------------------------------------------- */
+
+.page h2 {
+  font-size: clamp(1.375rem, 1.1rem + 1.1vw, 1.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.028em;
+  font-weight: 660;
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--et-border-subtle);
+}
+
+.page h3 {
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin-top: 2.25rem;
+}
+
+/* -----------------------------------------------------------------------------
+   Channel router — the primary decision surface
+   -------------------------------------------------------------------------- */
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+/* Qualified with `.markdown` so it outranks the site-wide `.markdown a`
+   colour and hover-underline without reaching for `!important`. */
+:global(.markdown) .channel {
+  display: flex;
+  gap: 0.875rem;
+  padding: 1.125rem;
+  border: 1px solid var(--et-border);
+  border-radius: var(--et-radius-lg);
+  background-color: var(--et-surface);
+  color: var(--et-text);
+  font-weight: 400;
+  text-decoration: none;
+  transition: border-color var(--et-duration) var(--et-ease),
+    background-color var(--et-duration) var(--et-ease),
+    box-shadow var(--et-duration) var(--et-ease);
+}
+
+/* No transform on hover: the card must not move under the pointer or shift
+   the cards beside it. Border and surface carry the state instead. */
+:global(.markdown) .channel:hover {
+  border-color: var(--et-accent-border);
+  background-color: var(--et-surface-2);
+  color: var(--et-text);
+  text-decoration: none;
+  box-shadow: var(--et-shadow-sm);
+}
+
+:global(.markdown) .channel:focus-visible {
+  outline: none;
+  border-color: var(--et-accent-border);
+  box-shadow: 0 0 0 3px var(--et-ring);
+}
+
+.channelIcon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--et-radius-md);
+  background-color: var(--et-accent-subtle);
+  color: var(--et-accent);
+}
+
+.channelIcon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.channelBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.channelTitle {
+  font-size: var(--et-text-base);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--et-text);
+}
+
+.channelText {
+  font-size: var(--et-text-sm);
+  line-height: 1.5;
+  color: var(--et-text-muted);
+  text-wrap: pretty;
+}
+
+/* -----------------------------------------------------------------------------
+   Numbered steps
+   -------------------------------------------------------------------------- */
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.5rem;
+  min-height: 1.75rem;
+}
+
+.steps > li + li {
+  margin-top: 0.875rem;
+}
+
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border: 1px solid var(--et-border);
+  border-radius: var(--et-radius-full);
+  background-color: var(--et-surface-2);
+  color: var(--et-text-muted);
+  font-size: var(--et-text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   Term / description pairs
+   -------------------------------------------------------------------------- */
+
+.definitions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.25rem 1.5rem;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.definition {
+  padding: 0.625rem 0;
+  border-top: 1px solid var(--et-border-subtle);
+}
+
+.definitionTerm {
+  display: block;
+  font-size: var(--et-text-base);
+  font-weight: 600;
+  color: var(--et-text);
+}
+
+.definitionText {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: var(--et-text-sm);
+  line-height: 1.55;
+  color: var(--et-text-muted);
+}
+
+/* -----------------------------------------------------------------------------
+   Plan tiers
+   -------------------------------------------------------------------------- */
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--et-border);
+  border-radius: var(--et-radius-lg);
+  background-color: var(--et-surface);
+}
+
+/* The recommended tier is marked by border *and* a text badge — never by
+   colour alone. */
+.planFeatured {
+  border-color: var(--et-accent-border);
+  background-color: var(--et-accent-subtle);
+}
+
+.planHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.planName {
+  font-size: var(--et-text-base);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--et-text);
+}
+
+.planBadge {
+  flex: 0 0 auto;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--et-radius-full);
+  background-color: var(--et-accent);
+  color: var(--et-accent-contrast);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.planPrice {
+  margin-top: 0.625rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  /* Tabular figures keep the three prices optically aligned across cards. */
+  font-variant-numeric: tabular-nums;
+}
+
+.planAmount {
+  font-size: 1.75rem;
+  font-weight: 680;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--et-text);
+}
+
+.planPeriod {
+  font-size: var(--et-text-sm);
+  color: var(--et-text-muted);
+}
+
+.planAlt {
+  margin-top: 0.2rem;
+  font-size: var(--et-text-xs);
+  color: var(--et-text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.planList {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--et-border-subtle);
+  padding-top: 0.875rem;
+}
+
+.planList li {
+  position: relative;
+  padding-left: 1.05rem;
+  font-size: var(--et-text-sm);
+  line-height: 1.5;
+  color: var(--et-text-secondary);
+}
+
+.planList li + li {
+  margin-top: 0.4rem;
+}
+
+.planList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: var(--et-radius-full);
+  background-color: var(--et-accent);
+}
+
+/* -----------------------------------------------------------------------------
+   Resource links
+   -------------------------------------------------------------------------- */
+
+.resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0 1.5rem;
+  margin: 1.5rem 0;
+}
+
+:global(.markdown) .resource {
+  display: block;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--et-border-subtle);
+  color: var(--et-text);
+  font-weight: 400;
+  text-decoration: none;
+  transition: color var(--et-duration) var(--et-ease);
+}
+
+:global(.markdown) .resource:hover .resourceName {
+  color: var(--et-accent);
+}
+
+:global(.markdown) .resource:focus-visible {
+  outline: none;
+  border-radius: var(--et-radius-sm);
+  box-shadow: 0 0 0 3px var(--et-ring);
+}
+
+.resourceName {
+  display: block;
+  font-size: var(--et-text-base);
+  font-weight: 550;
+  color: var(--et-text);
+  transition: color var(--et-duration) var(--et-ease);
+}
+
+.resourceText {
+  display: block;
+  margin-top: 0.05rem;
+  font-size: var(--et-text-sm);
+  line-height: 1.5;
+  color: var(--et-text-muted);
+}
+
+/* -----------------------------------------------------------------------------
+   Footnote
+   -------------------------------------------------------------------------- */
+
+.source {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--et-border-subtle);
+  font-size: var(--et-text-sm);
+  color: var(--et-text-faint);
+}
+
+/* -----------------------------------------------------------------------------
+   Motion preference
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.markdown) .channel,
+  :global(.markdown) .resource,
+  .resourceName {
+    transition: none;
+  }
+}
