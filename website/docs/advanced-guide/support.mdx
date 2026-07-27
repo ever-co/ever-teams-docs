@@ -99,25 +99,6 @@ export const Resource = ({ href, name, text }) => (
   </a>
 );
 
-export const Plan = ({ name, amount, period, alt, badge, featured, features }) => (
-  <div className={featured ? `${styles.plan} ${styles.planFeatured}` : styles.plan}>
-    <div className={styles.planHead}>
-      <span className={styles.planName}>{name}</span>
-      {badge ? <span className={styles.planBadge}>{badge}</span> : null}
-    </div>
-    <div className={styles.planPrice}>
-      <span className={styles.planAmount}>{amount}</span>
-      <span className={styles.planPeriod}>{period}</span>
-    </div>
-    <div className={styles.planAlt}>{alt}</div>
-    <ul className={styles.planList}>
-      {features.map((f) => (
-        <li key={f}>{f}</li>
-      ))}
-    </ul>
-  </div>
-);
-
 <div className={styles.page}>
 
 <span className={styles.eyebrow}>Help &amp; Support</span>
@@ -334,54 +315,13 @@ Post your question in a single channel and link to it if you need to follow up e
 
 <p className={styles.lead}>
 
-Cloud plans are tiered by number of active users. Prices are in USD and taxes
-may apply; one purchase covers both the Platform and the Kit.
+Cloud plans are tiered by number of active users, and one purchase covers both
+the Platform and the Kit. See [ever.team/pricing](https://ever.team/pricing) for
+the current tiers, limits, and prices.
 
 </p>
 
-<div className={styles.plans}>
-  <Plan
-    name="Starter"
-    amount="Free"
-    period=""
-    alt="For smaller teams organizing their work"
-    features={["1 user", "1 active user", "Product support"]}
-  />
-  <Plan
-    name="Premium"
-    amount="$15"
-    period="/ month"
-    alt="or $120 / year"
-    badge="Popular"
-    featured
-    features={[
-      "Everything in Starter",
-      "5 active users, $3 per additional user",
-      "Unlimited teams, tasks, and projects",
-      "All Kit components",
-    ]}
-  />
-  <Plan
-    name="Enterprise"
-    amount="$100"
-    period="/ month"
-    alt="or $990 / year"
-    features={[
-      "Everything in Starter",
-      "10 active users, $10 per additional user",
-      "Unlimited teams, tasks, and projects",
-      "All Kit components",
-    ]}
-  />
-</div>
-
 For cloud accounts, Ever Teams lists email and live chat as the support contact methods — see the FAQ on the [pricing page](https://ever.team/pricing) for the current commitment. Subscription details, credits, and license upgrades are managed from your account dashboard, and an upgrade credits the cost of your current license toward the new one.
-
-:::note
-
-These tiers reflect [ever.team/pricing](https://ever.team/pricing) at the time of writing. The pricing page is always the source of truth for current plans and limits.
-
-:::
 
 ## Commercial & enterprise support
 
@@ -429,7 +369,7 @@ See [Community](/community/) for everything else going on around the project.
 
 <p className={styles.source}>
 
-Plan, resource and status details on this page are sourced from{" "}
+Resource and status details on this page are sourced from{" "}
 <a href="https://ever.team">ever.team</a> and{" "}
 <a href="https://ever.team/pricing">ever.team/pricing</a>.
 
