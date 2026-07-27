@@ -882,19 +882,57 @@ h6 {
    6. Search
    ========================================================================== */
 
+/* Infima's magnifier is a `currentColor` fill inside a background image, and
+   that keyword has nothing to inherit from there — it renders near-black in
+   both modes. Redraw it per mode in our own muted tone. */
+:root {
+  --ifm-navbar-search-input-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239aa0ab' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.6-3.6'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] {
+  --ifm-navbar-search-input-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239d98b3' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.6-3.6'/%3E%3C/svg%3E");
+}
+
+/* The shared shell: the local search input and both Algolia triggers. */
 .navbar__search-input,
 .aa-DetachedSearchButton,
 .DocSearch-Button {
   height: 2.25rem;
   min-width: 12rem;
-  padding-inline: 0.75rem;
   border: 1px solid var(--et-border) !important;
   border-radius: var(--et-radius-md) !important;
   background-color: var(--et-surface-2) !important;
-  color: var(--et-text-muted) !important;
-  font-size: var(--et-text-base);
+  font-size: var(--et-text-sm);
   font-weight: 450;
   transition: var(--et-transition);
+}
+
+/* Algolia lays its own icon and key caps out inside the button, so it only
+   needs symmetric insets. */
+.aa-DetachedSearchButton,
+.DocSearch-Button {
+  padding-inline: 0.75rem;
+  color: var(--et-text-muted) !important;
+}
+
+/* The input is a text field, so what you type reads at full contrast and the
+   placeholder carries the muted tone. Logical insets clear the magnifier at
+   the start and the plugin's clear button at the end, in both directions. */
+.navbar__search-input {
+  padding-inline: 2.25rem 2rem;
+  background-position: left 0.75rem center;
+  background-size: 0.9375rem 0.9375rem;
+  color: var(--et-text) !important;
+  caret-color: var(--et-accent);
+}
+
+html[dir="rtl"] .navbar__search-input {
+  background-position: right 0.75rem center;
+}
+
+/* Lift the field off the bar while it holds focus. */
+.navbar__search-input:focus {
+  background-color: var(--et-surface) !important;
 }
 
 .navbar__search-input:hover,
@@ -958,6 +996,7 @@ h6 {
 }
 
 @media (max-width: 996px) {
+  /* Collapsed to a square: only the magnifier shows, so centre it. */
   .navbar__search-input,
   .aa-DetachedSearchButton {
     min-width: 2.25rem;
@@ -965,12 +1004,26 @@ h6 {
     padding-inline: 0;
     justify-content: center;
   }
+
+  .navbar__search-input {
+    background-position: center;
+  }
 }
 
 @media (min-width: 997px) {
   .navbar__search-input,
   .aa-DetachedSearchButton {
     min-width: 14rem;
+  }
+
+  /* The theme pads this wrapper and the search plugin adds a 16px margin on
+     top of it; between them the field drifted away from the icon cluster. */
+  .navbar__items--right > .navbar-search {
+    padding-inline: 0;
+  }
+
+  [class*="searchBarContainer"] {
+    margin-left: 0.5rem;
   }
 }
 
