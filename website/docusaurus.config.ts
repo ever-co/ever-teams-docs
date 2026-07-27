@@ -135,10 +135,15 @@ const config: Config = {
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
+            // A plain link rather than `type: "docSidebar"`: that variant marks
+            // itself active for every doc in the sidebar, and the Advanced Guide
+            // pages are still attached to it, so Docs and Support both lit up at
+            // once. The regex hands the Advanced Guide routes to Support, so
+            // exactly one of the two is ever active.
+            to: "/",
             label: "Docs",
+            position: "left",
+            activeBaseRegex: "^(?!.*advanced-guide).*$",
           },
           {
             // The doc is served from its folder path; `/support` does not exist
@@ -146,6 +151,9 @@ const config: Config = {
             to: "/advanced-guide/support",
             label: "Support",
             position: "left",
+            // Claims the whole Advanced Guide section, including the page the
+            // Support link does not point at.
+            activeBaseRegex: "advanced-guide",
           },
           {
             type: "localeDropdown",
