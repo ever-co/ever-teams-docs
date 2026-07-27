@@ -110,6 +110,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Advanced Guide",
+      items: ["advanced-guide/advanced-guide", "advanced-guide/support"],
+    },
+    {
+      type: "category",
       label: "Community",
       items: [
         "community/community",
