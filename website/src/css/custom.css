@@ -1080,12 +1080,12 @@ html[dir="rtl"] .navbar__search-input {
 .menu__link {
   display: flex;
   align-items: center;
-  min-height: 2rem;
-  padding: 0.375rem 0.625rem;
+  min-height: 1.875rem;
+  padding: 0.3125rem 0.625rem;
   border-radius: var(--et-radius-md);
-  font-size: var(--et-text-base);
-  font-weight: 400;
-  line-height: 1.4;
+  font-size: var(--et-text-sm);
+  font-weight: 300;
+  line-height: 1.45;
   color: var(--et-text-muted);
   background-color: transparent;
   transition: var(--et-transition);
@@ -1111,7 +1111,7 @@ html[dir="rtl"] .navbar__search-input {
 .menu__link--sublist {
   color: var(--et-text);
   font-weight: 550;
-  font-size: var(--et-text-base);
+  font-size: var(--et-text-sm);
   letter-spacing: -0.005em;
 }
 
@@ -2142,9 +2142,9 @@ button:focus:not(:focus-visible) {
   > .menu__link::before {
   content: "";
   display: inline-flex;
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
   margin-right: 8px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2160,9 +2160,9 @@ button:focus:not(:focus-visible) {
   > a.menu__link:not(.menu__link--sublist)::before {
   content: "";
   display: inline-flex;
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
   margin-right: 8px;
   background-size: contain;
   background-repeat: no-repeat;
