@@ -64,6 +64,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Kit",
+      items: ["kit/index"],
+    },
+    {
+      type: "category",
       label: "Deployment",
       items: [
         "deployment/index",
@@ -104,8 +109,21 @@ const sidebars: SidebarsConfig = {
       items: ["troubleshooting/index"],
     },
     {
+      // Reached from the navbar, not the sidebar. The pages stay attached to
+      // the sidebar so they keep a left rail (the support page renders the
+      // Cloud promo there) and stay out of the unlisted-docs warning; the
+      // entry itself is hidden from the menu.
+      type: "category",
+      label: "Advanced Guide",
+      className: "menu__list-item--hidden",
+      items: ["advanced-guide/advanced-guide", "advanced-guide/support"],
+    },
+    {
       type: "category",
       label: "Community",
+      // Its icon is matched by class, not position: the hidden Advanced Guide
+      // entry above still counts for nth-child and would shift it off.
+      className: "menu__list-item--community",
       items: [
         "community/community",
         "community/contact-us",

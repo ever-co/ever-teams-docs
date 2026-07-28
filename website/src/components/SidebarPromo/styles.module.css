@@ -1,0 +1,202 @@
+/**
+ * Sidebar promo panel — presentation only.
+ *
+ * Every colour, radius and duration is a `--et-*` token from
+ * `src/css/custom.css`, so light and dark are inherited rather than redefined
+ * here.
+ *
+ * The panel fills the whole left rail rather than sitting in it as a card: on
+ * these routes it *is* the sidebar, so a floating card inside an empty column
+ * would read as a leftover. Hairlines and a lit screenshot carry the depth.
+ */
+
+.promo {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 2.75rem 1.5rem 2rem;
+  /* Accent wash from the top edge. The base stays `--et-bg` to match the rail
+     container above it — the container paints the strip under the navbar, so
+     any other base would seam there. Separation comes from the hairlines and
+     the lit screenshot, not from a second background colour. */
+  background: radial-gradient(
+      130% 55% at 50% 0%,
+      var(--et-accent-subtle),
+      transparent 72%
+    ),
+    var(--et-bg);
+}
+
+/* Copy sits above the hairlines without either needing a z-index race. */
+.promo > *:not(.ruleH):not(.ruleV) {
+  position: relative;
+  z-index: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   Blueprint hairlines
+   -------------------------------------------------------------------------- */
+
+/* Horizontal rule with a lit accent segment, as in the reference. */
+.ruleH {
+  position: absolute;
+  top: 1.75rem;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--et-border) 14%,
+    var(--et-border) 40%,
+    var(--et-accent) 48%,
+    var(--et-accent) 64%,
+    var(--et-border) 72%,
+    transparent 100%
+  );
+}
+
+/* Vertical rule, fading out before it reaches the copy. */
+.ruleV {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.5rem;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--et-border) 12%,
+    transparent 65%
+  );
+}
+
+/* -----------------------------------------------------------------------------
+   Product shot
+   -------------------------------------------------------------------------- */
+
+/* Fixed ratio so the panel keeps its height before the image decodes. */
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  margin: 1.25rem 0 1.75rem;
+  overflow: hidden;
+  background-color: var(--et-surface-3);
+  border: 1px solid var(--et-border);
+  border-radius: var(--et-radius-lg);
+  /* Accent-tinted lift, then the neutral depth shadow beneath it. */
+  box-shadow: 0 18px 40px -20px var(--et-accent-border), var(--et-shadow-lg);
+}
+
+/* Zoomed to 2x and anchored top-left, so the frame shows the header, member
+   name and running timer at a readable size. Fitting the whole 2160px-wide
+   screenshot into a ~230px rail would reduce it ~9x and render it illegible —
+   a crop that says one thing beats a full shot that says nothing.
+   `max-width` is reset because the site sets `img { max-width: 100% }`. */
+.shot {
+  display: block;
+  width: 200%;
+  max-width: none;
+  height: auto;
+}
+
+/* Fades the screenshot into the panel instead of cutting it off. */
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2.5rem;
+  background: linear-gradient(to top, var(--et-bg), transparent);
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------------------------
+   Copy
+   -------------------------------------------------------------------------- */
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--et-accent);
+  font-size: var(--et-text-sm);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.title {
+  margin: 0 0 1.25rem;
+  color: var(--et-text);
+  font-size: var(--et-text-lg);
+  font-weight: 680;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* -----------------------------------------------------------------------------
+   Pull quote
+   -------------------------------------------------------------------------- */
+
+.quote {
+  margin: 0 0 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--et-border-strong);
+}
+
+.quoteText {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--et-text-secondary);
+  font-size: var(--et-text-base);
+  font-style: normal;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.quoteMeta {
+  margin-top: 0.6rem;
+  color: var(--et-text-faint);
+  font-size: var(--et-text-sm);
+  line-height: 1.5;
+}
+
+/* -----------------------------------------------------------------------------
+   Call to action
+   -------------------------------------------------------------------------- */
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Pinned to the foot of the rail when the panel is taller than its copy. */
+  margin-top: auto;
+  min-height: 2.5rem;
+  padding: 0 0.875rem;
+  color: var(--et-cta-color);
+  background-color: var(--et-cta-bg);
+  border-radius: var(--et-radius-md);
+  font-size: var(--et-text-base);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: background-color var(--et-duration) var(--et-ease),
+    box-shadow var(--et-duration) var(--et-ease);
+}
+
+.cta:hover {
+  color: var(--et-cta-color);
+  background-color: var(--et-cta-bg-hover);
+  text-decoration: none;
+}
+
+.cta:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--et-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+}

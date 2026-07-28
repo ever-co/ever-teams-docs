@@ -7,4 +7,4 @@ sidebar_position: 3
 
 # Advanced Guide
 
-- [Support](./support.md)
+- [Support](./support.mdx)

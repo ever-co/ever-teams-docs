@@ -37,6 +37,25 @@ const config: Config = {
   ],
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [{ src: "https://buttons.github.io/buttons.js", async: true }],
+  // Preconnect early so the webfont request starts before CSS is parsed.
+  headTags: [
+    {
+      tagName: "link",
+      attributes: { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
+      },
+    },
+  ],
+  // `display=swap` avoids invisible text while the font loads (FOIT).
+  stylesheets: [
+    "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400..700&display=swap",
+  ],
   title: "Ever Teams", // Title for your website.
   tagline: "Open Work and Project Management Platform",
   favicon: "img/favicon.ico",
@@ -105,42 +124,74 @@ const config: Config = {
         defaultMode: "dark",
       },
       navbar: {
-        style: "dark",
+        // No forced `style` — the navbar follows the active colour mode so
+        // light and dark are designed as a pair rather than one inverted.
+        hideOnScroll: false,
         logo: {
           alt: "Ever® Teams Logo",
-          srcDark: "/img/ever-team.svg",
-          src: "img/ever-team-dark.svg",
+          srcDark: "/img/ever-teams-logo-dark.svg",
+          src: "/img/ever-teams-logo.svg",
+          height: 32,
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
+            // A plain link rather than `type: "docSidebar"`: that variant marks
+            // itself active for every doc in the sidebar, and the Advanced Guide
+            // pages are still attached to it, so Docs and Support both lit up at
+            // once. The regex hands the Advanced Guide routes to Support, so
+            // exactly one of the two is ever active.
+            to: "/",
             label: "Docs",
+            position: "left",
+            activeBaseRegex: "^(?!.*advanced-guide).*$",
           },
           {
-            to: "/support",
+            // The doc is served from its folder path; `/support` does not exist
+            // and was reported broken on every page by the build.
+            to: "/advanced-guide/support",
             label: "Support",
             position: "left",
+            // Claims the whole Advanced Guide section, including the page the
+            // Support link does not point at.
+            activeBaseRegex: "advanced-guide",
           },
           {
             type: "localeDropdown",
             position: "right",
             className: "header-locale-link",
+            "aria-label": "Change language",
           },
           {
             href: "https://github.com/ever-co/ever-teams",
             label: "GitHub",
             position: "right",
             className: "header-github-link",
+            "aria-label": "Ever Teams on GitHub",
+          },
+          {
+            // Placed explicitly: without this item the search bar is appended
+            // last, pushing the CTA in front of it.
+            type: "search",
+            position: "right",
+            className: "navbar-search",
+          },
+          {
+            href: "https://app.ever.team",
+            label: "Get Started",
+            position: "right",
+            className: "navbar-cta",
           },
         ],
       },
       footer: {
-        style: "dark",
         logo: {
-          src: "/img/ever-team.svg",
-          height: 40,
+          // src is required by the theme's schema but never fetched: the mark is
+          // drawn inline by src/theme/Footer/Logo so it can follow the colour
+          // mode. Everything else here still drives the link.
+          src: "/img/ever-dark.svg",
+          alt: "Ever",
+          href: "https://ever.co",
+          target: "_blank",
         },
         links: [
           {
@@ -207,7 +258,9 @@ const config: Config = {
             ],
           },
         ],
-        copyright: `Copyright © 2023-${new Date().getFullYear()} Ever Co. LTD.`,
+        // Rendered as raw HTML by the theme's Copyright component, so the
+        // company name can carry its own link.
+        copyright: `Copyright © 2023-${new Date().getFullYear()} <a href="https://ever.co/" target="_blank" rel="noopener noreferrer">Ever Co. LTD.</a>`,
       },
       algolia: HAS_ALGOLIA_CREDENTIALS
         ? {
@@ -246,7 +299,14 @@ const config: Config = {
         : undefined,
       prism: {
         theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        // Higher contrast on the deep surface than dracula, and the token hues
+        // stay legible against our code-block background token.
+        darkTheme: prismThemes.oneDark,
+      },
+      // Keep the right rail focused: h2/h3 only, so it stays scannable.
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 3,
       },
     },
 };
