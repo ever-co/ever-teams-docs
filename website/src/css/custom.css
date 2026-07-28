@@ -1882,13 +1882,34 @@ article .card p {
   text-decoration: none;
 }
 
+/* The Ever mark is an inline SVG (see src/theme/Footer/Logo) sized off its own
+   height so the 93:21 viewBox keeps its ratio in both colour modes. */
 .footer__logo {
-  max-height: 2.25rem;
+  display: block;
+  height: 1.5rem;
   width: auto;
-  margin-bottom: 1rem;
+  color: var(--et-text-muted);
+  transition: var(--et-transition);
 }
 
+.footer__logo-link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.footer__logo-link:hover .footer__logo {
+  color: var(--et-text);
+}
+
+/* Mark and copyright bracket the credit line: logo hard left, copyright hard
+   right, both centred on the row. They wrap to two lines rather than shrinking
+   when the viewport can't hold both. */
 .footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--et-border);
@@ -1897,6 +1918,19 @@ article .card p {
 .footer__copyright {
   font-size: var(--et-text-xs);
   color: var(--et-text-faint);
+}
+
+/* The company name links out; it stays the same weight as the line around it
+   and picks up its emphasis on hover. */
+.footer__copyright a {
+  color: var(--et-text-muted);
+  text-decoration: none;
+  transition: var(--et-transition);
+}
+
+.footer__copyright a:hover {
+  color: var(--et-text);
+  text-decoration: underline;
 }
 
 /* GitHub star widget in the footer */
@@ -1943,12 +1977,9 @@ footer .widget .social-count {
   background-color: transparent;
 }
 
+/* Not a flex container: the copyright is now a sentence with a link inside it,
+   and laying the parts out as flex items would break them apart. */
 .docs-wrapper .footer .footer__copyright {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
   color: var(--et-text-faint);
 }
 
@@ -2123,8 +2154,8 @@ button:focus:not(:focus-visible) {
     padding: 2rem 0;
   }
 
-  .docs-wrapper .footer .footer__copyright {
-    justify-content: flex-start;
+  .footer__bottom {
+    row-gap: 0.5rem;
   }
 }
 

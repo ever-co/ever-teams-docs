@@ -185,8 +185,13 @@ const config: Config = {
       },
       footer: {
         logo: {
-          src: "/img/ever-team.svg",
-          height: 40,
+          // src is required by the theme's schema but never fetched: the mark is
+          // drawn inline by src/theme/Footer/Logo so it can follow the colour
+          // mode. Everything else here still drives the link.
+          src: "/img/ever-dark.svg",
+          alt: "Ever",
+          href: "https://ever.co",
+          target: "_blank",
         },
         links: [
           {
@@ -253,7 +258,9 @@ const config: Config = {
             ],
           },
         ],
-        copyright: `Copyright © 2023-${new Date().getFullYear()} Ever Co. LTD.`,
+        // Rendered as raw HTML by the theme's Copyright component, so the
+        // company name can carry its own link.
+        copyright: `Copyright © 2023-${new Date().getFullYear()} <a href="https://ever.co/" target="_blank" rel="noopener noreferrer">Ever Co. LTD.</a>`,
       },
       algolia: HAS_ALGOLIA_CREDENTIALS
         ? {
