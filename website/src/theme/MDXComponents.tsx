@@ -11,7 +11,7 @@ import OriginalMDXComponents from "@theme-original/MDXComponents";
  */
 function MDXTable(props: ComponentProps<"table">): ReactNode {
   return (
-    <div className="et-table-scroll">
+    <div className="et-table-scroll" tabIndex={0}>
       <table {...props} />
     </div>
   );
