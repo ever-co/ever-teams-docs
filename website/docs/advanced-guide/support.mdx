@@ -10,6 +10,15 @@ description: How to get help with Ever Teams — self-service resources, communi
 
 import styles from "./support.module.css";
 
+{/*
+  Markdown links are mapped to Docusaurus' `Link`, which sends external
+  destinations to a new tab. Literal JSX anchors skip that mapping, so they
+  need the same treatment applied by hand — anything that is not a site path,
+  a relative path or an anchor leaves the site.
+*/}
+export const externalProps = (href) =>
+  /^[./#]/.test(href) ? {} : { target: "_blank", rel: "noopener noreferrer" };
+
 export const Icon = ({ children }) => (
   <svg
     viewBox="0 0 24 24"
@@ -76,7 +85,7 @@ export const BriefcaseIcon = () => (
 );
 
 export const Channel = ({ href, icon, title, text }) => (
-  <a className={styles.channel} href={href}>
+  <a className={styles.channel} href={href} {...externalProps(href)}>
     <span className={styles.channelIcon}>{icon}</span>
     <span className={styles.channelBody}>
       <span className={styles.channelTitle}>{title}</span>
@@ -93,7 +102,7 @@ export const Definition = ({ term, text }) => (
 );
 
 export const Resource = ({ href, name, text }) => (
-  <a className={styles.resource} href={href}>
+  <a className={styles.resource} href={href} {...externalProps(href)}>
     <span className={styles.resourceName}>{name}</span>
     <span className={styles.resourceText}>{text}</span>
   </a>
@@ -107,9 +116,9 @@ export const Resource = ({ href, name, text }) => (
 
 <p className={styles.heroLead}>
 
-Ever Teams is developed by <a href="https://ever.co">Ever Co. LTD</a> and runs
+Ever Teams is developed by <a href="https://ever.co" target="_blank" rel="noopener noreferrer">Ever Co. LTD</a> and runs
 both as a self-hosted, open-source platform and as a cloud service at{" "}
-<a href="https://app.ever.team">app.ever.team</a>. Here is where to get help,
+<a href="https://app.ever.team" target="_blank" rel="noopener noreferrer">app.ever.team</a>. Here is where to get help,
 which channel fits which problem, and how to make your request easy to answer.
 
 </p>
@@ -295,15 +304,7 @@ Logs and `.env` files contain API keys, database credentials, and tokens. Strip 
 
 ## Community support
 
-Community support is free and covers the open-source Community Edition. It is best-effort — maintainers and other users answer as they are available, and there is no response-time commitment.
-
-| Channel | Best for | Link |
-| --- | --- | --- |
-| **Discord** | Quick questions, general chat | [discord.gg/hKQfn4j](https://discord.gg/hKQfn4j) |
-| **Slack** | Wider community discussion | [Gauzy Slack](https://join.slack.com/t/gauzy) |
-| **Gitter** | Development chat | [ever-co/ever-teams](https://gitter.im/ever-co/ever-teams) |
-| **GitHub Discussions** | Longer, searchable threads | [Discussions](https://github.com/ever-co/ever-teams/discussions) |
-| **Codementor** | Paid one-on-one help | [codementor.io/evereq](https://www.codementor.io/evereq) |
+Community support is free and covers the open-source Community Edition. It is best-effort — maintainers and other users answer as they are available, and there is no response-time commitment. Every channel, and what each one is best for, is listed on [Contact Us](/community/contact-us).
 
 :::tip[Ask once, in one place]
 
@@ -332,7 +333,7 @@ Beyond the community channels, Ever Co. offers paid engagements:
 - **Deployment and migration assistance** for self-hosted installations
 - **Commercial licensing** — Enterprise and Small Business licenses for use outside AGPL-3.0 terms
 
-Contact [ever@ever.co](mailto:ever@ever.co) or use the form at [ever.co/contacts](https://ever.co/contacts). For implementation partners, see [ever.team/partners](https://ever.team/partners).
+See [Contact Us](/community/contact-us) for how to reach the team, and [ever.team/partners](https://ever.team/partners) for implementation partners.
 
 ## Self-hosted support
 
@@ -353,25 +354,19 @@ The [ever.team](https://ever.team) footer publishes a live system status indicat
 
 ## Security issues
 
-Report vulnerabilities privately to [security@ever.co](mailto:security@ever.co). Include affected versions, reproduction steps, and impact. **Do not** open a public GitHub issue for a security concern — see the [Security](/security/) guide for the full disclosure process.
+Vulnerabilities go through private disclosure, never a public issue. Include affected versions, reproduction steps, and impact — the [Security](/security/) guide covers the full process, and [Contact Us](/community/contact-us) has the address.
 
 ## Helping others
 
-Support goes both ways, and the fastest way to improve it is to contribute.
+Support goes both ways. Answering someone else's question, or fixing the page that would have answered it, is the fastest way to improve it — every page here has an **Edit this page** link at the foot.
 
-- Star the [repository](https://github.com/ever-co/ever-teams)
-- Answer questions in [Discord](https://discord.gg/hKQfn4j) or [GitHub Discussions](https://github.com/ever-co/ever-teams/discussions)
-- Improve these docs — every page has an **Edit this page** link at the foot
-- Translate the app via [Crowdin](https://ever.crowdin.com/ever-teams)
-- Submit a pull request — see the [Contributing Guide](https://github.com/ever-co/ever-teams/blob/develop/.github/CONTRIBUTING.MD)
-
-See [Community](/community/) for everything else going on around the project.
+See [Community](/community/) for the other ways to contribute.
 
 <p className={styles.source}>
 
 Resource and status details on this page are sourced from{" "}
-<a href="https://ever.team">ever.team</a> and{" "}
-<a href="https://ever.team/pricing">ever.team/pricing</a>.
+<a href="https://ever.team" target="_blank" rel="noopener noreferrer">ever.team</a> and{" "}
+<a href="https://ever.team/pricing" target="_blank" rel="noopener noreferrer">ever.team/pricing</a>.
 
 </p>
 
