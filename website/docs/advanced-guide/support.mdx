@@ -1,0 +1,377 @@
+---
+id: support
+title: Support
+sidebar_label: Support
+sidebar_position: 5
+hide_title: true
+toc_max_heading_level: 2
+description: How to get help with Ever Teams — self-service resources, community channels, commercial support, and what to include in a good support request.
+---
+
+import styles from "./support.module.css";
+
+{/*
+  Markdown links are mapped to Docusaurus' `Link`, which sends external
+  destinations to a new tab. Literal JSX anchors skip that mapping, so they
+  need the same treatment applied by hand — anything that is not a site path,
+  a relative path or an anchor leaves the site. `mailto:`/`tel:` are handed to
+  another application rather than navigated to, so a new tab would only be
+  left behind blank.
+*/}
+export const externalProps = (href) =>
+  /^([./#]|mailto:|tel:)/.test(href)
+    ? {}
+    : { target: "_blank", rel: "noopener noreferrer" };
+
+export const Icon = ({ children }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    {children}
+  </svg>
+);
+
+export const BookIcon = () => (
+  <Icon>
+    <path d="M12 7v14" />
+    <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+  </Icon>
+);
+
+export const ChatIcon = () => (
+  <Icon>
+    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
+  </Icon>
+);
+
+export const BugIcon = () => (
+  <Icon>
+    <path d="m8 2 1.88 1.88" />
+    <path d="M14.12 3.88 16 2" />
+    <path d="M9 7.13v-1a3 3 0 1 1 6 0v1" />
+    <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6" />
+    <path d="M12 20v-9" />
+    <path d="M6.5 9C4.6 8.8 3 7.1 3 5" />
+    <path d="M6 13H2" />
+    <path d="M3 21c0-2.1 1.7-3.9 3.8-4" />
+    <path d="M21 5c0 2.1-1.6 3.8-3.5 4" />
+    <path d="M22 13h-4" />
+    <path d="M17.2 17c2.1.1 3.8 1.9 3.8 4" />
+  </Icon>
+);
+
+export const BulbIcon = () => (
+  <Icon>
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+    <path d="M9 18h6" />
+    <path d="M10 22h4" />
+  </Icon>
+);
+
+export const ShieldIcon = () => (
+  <Icon>
+    <path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z" />
+    <path d="m9 12 2 2 4-4" />
+  </Icon>
+);
+
+export const BriefcaseIcon = () => (
+  <Icon>
+    <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    <rect width="20" height="14" x="2" y="6" rx="2" />
+  </Icon>
+);
+
+export const Channel = ({ href, icon, title, text }) => (
+  <a className={styles.channel} href={href} {...externalProps(href)}>
+    <span className={styles.channelIcon}>{icon}</span>
+    <span className={styles.channelBody}>
+      <span className={styles.channelTitle}>{title}</span>
+      <span className={styles.channelText}>{text}</span>
+    </span>
+  </a>
+);
+
+export const Definition = ({ term, text }) => (
+  <div className={styles.definition}>
+    <span className={styles.definitionTerm}>{term}</span>
+    <span className={styles.definitionText}>{text}</span>
+  </div>
+);
+
+export const Resource = ({ href, name, text }) => (
+  <a className={styles.resource} href={href} {...externalProps(href)}>
+    <span className={styles.resourceName}>{name}</span>
+    <span className={styles.resourceText}>{text}</span>
+  </a>
+);
+
+<div className={styles.page}>
+
+<span className={styles.eyebrow}>Help &amp; Support</span>
+
+<h1 className={styles.heroTitle}>Get help with Ever Teams</h1>
+
+<p className={styles.heroLead}>
+
+Ever Teams is developed by <a href="https://ever.co" target="_blank" rel="noopener noreferrer">Ever Co. LTD</a> and runs
+both as a self-hosted, open-source platform and as a cloud service at{" "}
+<a href="https://app.ever.team" target="_blank" rel="noopener noreferrer">app.ever.team</a>. Here is where to get help,
+which channel fits which problem, and how to make your request easy to answer.
+
+</p>
+
+## Choose the right channel
+
+<p className={styles.lead}>
+
+Picking the channel that matches your problem is the fastest route to a useful
+answer.
+
+</p>
+
+<div className={styles.channels}>
+  <Channel
+    href="../troubleshooting/"
+    icon={<BookIcon />}
+    title="Solve it yourself"
+    text="Common errors, fixes, and frequently asked questions."
+  />
+  <Channel
+    href="https://discord.gg/hKQfn4j"
+    icon={<ChatIcon />}
+    title="Ask the community"
+    text="Quick questions and general chat on Discord."
+  />
+  <Channel
+    href="https://github.com/ever-co/ever-teams/issues"
+    icon={<BugIcon />}
+    title="Report a bug"
+    text="Reproducible defects, on GitHub Issues."
+  />
+  <Channel
+    href="https://github.com/ever-co/feature-requests/issues"
+    icon={<BulbIcon />}
+    title="Request a feature"
+    text="Propose an idea in the feature requests repo."
+  />
+  <Channel
+    href="mailto:security@ever.co"
+    icon={<ShieldIcon />}
+    title="Report a vulnerability"
+    text="Privately, to security@ever.co — never a public issue."
+  />
+  <Channel
+    href="mailto:ever@ever.co"
+    icon={<BriefcaseIcon />}
+    title="Commercial support"
+    text="Licensing, billing, custom development, enterprise."
+  />
+</div>
+
+Full channel details, including Slack and Gitter, live on the
+[Contact Us](/community/contact-us) page.
+
+## Before you ask
+
+Most reports resolve faster when they arrive complete. Work through this list first.
+
+<ol className={styles.steps}>
+  <li>
+
+**Search the docs** — start with{" "}
+<a href="../troubleshooting/">Troubleshooting &amp; FAQ</a>, then{" "}
+<a href="../getting-started/">Getting started</a> and{" "}
+<a href="../getting-started/configuration">Configuration</a>.
+
+  </li>
+  <li>
+
+**Search existing issues** — your problem may already be
+reported, or already fixed on <code>develop</code>.
+
+  </li>
+  <li>
+
+**Check the API is reachable** — visit{" "}
+<code>[https://api.ever.team/api/health](https://api.ever.team/api/health)</code>, or your own API host, and
+confirm it responds.
+
+  </li>
+  <li>
+
+**Reproduce on a clean state** — clear browser cookies and local
+storage, or rebuild without the <code>.next</code> cache.
+
+  </li>
+  <li>
+
+**Check the console and server logs** — the actual error message
+is usually already there.
+
+  </li>
+</ol>
+
+## What to include in a report
+
+A good report answers _what did you do, what did you expect, what happened instead_ — and gives us enough to reproduce it.
+
+<div className={styles.definitions}>
+  <Definition term="Version" text="Release tag or commit SHA." />
+  <Definition term="Deployment" text="Cloud, self-hosted, or local development." />
+  <Definition term="Application" text="Web, desktop, mobile, or browser extension." />
+  <Definition
+    term="Environment"
+    text="OS, browser, Node.js version, Docker and Compose versions."
+  />
+  <Definition
+    term="Backend"
+    text="Ever Gauzy API URL and database — PostgreSQL or SQLite."
+  />
+  <Definition term="Steps to reproduce" text="Numbered, starting from a fresh session." />
+  <Definition
+    term="Expected vs. actual"
+    text="What should have happened, and what did."
+  />
+  <Definition
+    term="Evidence"
+    text="Console output, server logs, screenshots, or a short recording."
+  />
+</div>
+
+:::danger[Redact your secrets]
+
+Logs and `.env` files contain API keys, database credentials, and tokens. Strip them before pasting anything into a public issue or a chat channel.
+
+:::
+
+## Self-service resources
+
+<div className={styles.resources}>
+  <Resource
+    href="https://docs.ever.team"
+    name="Documentation"
+    text="Setup, architecture, features, deployment, API."
+  />
+  <Resource
+    href="https://ever.team/resources/guides"
+    name="Guides"
+    text="Practical guides to work & time tracking."
+  />
+  <Resource
+    href="https://demo.ever.team"
+    name="Live demo"
+    text="Try the platform with no installation."
+  />
+  <Resource
+    href="https://ever.team/demo"
+    name="Product demo"
+    text="Guided walkthrough, including the Kit."
+  />
+  <Resource
+    href="https://ever.team/downloads"
+    name="Downloads"
+    text="Desktop, mobile, API server, Docker images, source."
+  />
+  <Resource
+    href="https://ever.team/roadmap"
+    name="Roadmap"
+    text="What is planned and what is in progress."
+  />
+  <Resource
+    href="https://blog.ever.team"
+    name="Blog"
+    text="Release notes, news, and updates."
+  />
+  <Resource
+    href="https://ever.team/resources/free-tools/pomodoro-timer"
+    name="Free tools"
+    text="Pomodoro timer, time card, timer, time converter."
+  />
+  <Resource
+    href="https://ever.team/open-source"
+    name="Open source"
+    text="How the project is built and governed in the open."
+  />
+  <Resource
+    href="https://ever.team/partners"
+    name="Partners"
+    text="Partner program and implementation help."
+  />
+</div>
+
+## Community support
+
+Community support is free and covers the open-source Community Edition. It is best-effort — maintainers and other users answer as they are available, and there is no response-time commitment. Every channel, and what each one is best for, is listed on [Contact Us](/community/contact-us).
+
+:::tip[Ask once, in one place]
+
+Post your question in a single channel and link to it if you need to follow up elsewhere. Cross-posting the same question splits the answers.
+
+:::
+
+## Support by plan
+
+<p className={styles.lead}>
+
+Cloud plans are tiered by number of active users, and one purchase covers both
+the Platform and the Kit. See [ever.team/pricing](https://ever.team/pricing) for
+the current tiers, limits, and prices.
+
+</p>
+
+For cloud accounts, Ever Teams lists email and live chat as the support contact methods — see the FAQ on the [pricing page](https://ever.team/pricing) for the current commitment. Subscription details, credits, and license upgrades are managed from your account dashboard, and an upgrade credits the cost of your current license toward the new one.
+
+## Commercial & enterprise support
+
+Beyond the community channels, Ever Co. offers paid engagements:
+
+- **Priority and dedicated support** for production deployments
+- **Custom development** and feature sponsorship
+- **Deployment and migration assistance** for self-hosted installations
+- **Commercial licensing** — Enterprise and Small Business licenses for use outside AGPL-3.0 terms
+
+See [Contact Us](/community/contact-us) for how to reach the team, and [ever.team/partners](https://ever.team/partners) for implementation partners.
+
+## Self-hosted support
+
+Self-hosting means you own the deployment, so most issues are environment-specific. Ever Teams requires a reachable **Ever Gauzy** API — either the hosted one at `api.ever.team` or your own instance.
+
+Before opening an issue, confirm:
+
+- The API URL is set in both `GAUZY_API_SERVER_URL` and `NEXT_PUBLIC_GAUZY_API_SERVER_URL`
+- The API responds at `/api/health`
+- CORS allows your web app's domain
+- Ports 3030, 3000, 5432 and 6379 are free, and Docker has at least 4 GB of RAM allocated
+
+See [Deployment](/deployment/) and [Troubleshooting](/troubleshooting/) for the details, and [Configuration](/getting-started/configuration) for the full environment variable reference.
+
+## Service status
+
+The [ever.team](https://ever.team) footer publishes a live system status indicator for the hosted services. If the cloud app or API is unreachable, check there before filing a report. For self-hosted deployments, check your own API health endpoint and container logs first.
+
+## Security issues
+
+Vulnerabilities go through private disclosure, never a public issue. Include affected versions, reproduction steps, and impact — the [Security](/security/) guide covers the full process, and [Contact Us](/community/contact-us) has the address.
+
+## Helping others
+
+Support goes both ways. Answering someone else's question, or fixing the page that would have answered it, is the fastest way to improve it — every page here has an **Edit this page** link at the foot.
+
+See [Community](/community/) for the other ways to contribute.
+
+<p className={styles.source}>
+
+Resource and status details on this page are sourced from{" "}
+<a href="https://ever.team" target="_blank" rel="noopener noreferrer">ever.team</a> and{" "}
+<a href="https://ever.team/pricing" target="_blank" rel="noopener noreferrer">ever.team/pricing</a>.
+
+</p>
+
+</div>

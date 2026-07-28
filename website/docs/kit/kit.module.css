@@ -1,0 +1,60 @@
+/**
+ * Ever Teams Kit — page-scoped presentation.
+ *
+ * Typography only: no cards, no borders, no hover states, no motion.
+ * Colour and type scale come from the `--et-*` tokens in `src/css/custom.css`,
+ * so both themes are inherited rather than redefined.
+ */
+
+.eyebrow {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--et-accent);
+  font-size: var(--et-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.15rem + 2.4vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  color: var(--et-text);
+  text-wrap: balance;
+}
+
+.heroLead {
+  margin: 1rem 0 0;
+  max-width: 52ch;
+  font-size: var(--et-text-lg);
+  line-height: 1.6;
+  color: var(--et-text-secondary);
+}
+
+/* Section standfirst — sits directly under an h2. */
+.lead {
+  margin: 0 0 0.5rem;
+  font-size: var(--et-text-lg);
+  line-height: 1.6;
+  color: var(--et-text-secondary);
+}
+
+/* Tables on this page sit still — no row hover tint.
+   `.markdown` is an ancestor of `.page`, so qualifying with it outranks the
+   site-wide `.markdown table tbody tr:hover` rule without `!important`. */
+:global(.markdown) .page table tbody tr,
+:global(.markdown) .page table tbody tr:hover {
+  background-color: transparent;
+  transition: none;
+}
+
+.source {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--et-border-subtle);
+  font-size: var(--et-text-sm);
+  color: var(--et-text-faint);
+}
