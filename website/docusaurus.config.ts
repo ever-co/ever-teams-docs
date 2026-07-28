@@ -54,7 +54,7 @@ const config: Config = {
   ],
   // `display=swap` avoids invisible text while the font loads (FOIT).
   stylesheets: [
-    "https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
+    "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400..700&display=swap",
   ],
   title: "Ever Teams", // Title for your website.
   tagline: "Open Work and Project Management Platform",

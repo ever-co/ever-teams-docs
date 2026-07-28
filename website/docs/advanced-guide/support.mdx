@@ -14,10 +14,14 @@ import styles from "./support.module.css";
   Markdown links are mapped to Docusaurus' `Link`, which sends external
   destinations to a new tab. Literal JSX anchors skip that mapping, so they
   need the same treatment applied by hand — anything that is not a site path,
-  a relative path or an anchor leaves the site.
+  a relative path or an anchor leaves the site. `mailto:`/`tel:` are handed to
+  another application rather than navigated to, so a new tab would only be
+  left behind blank.
 */}
 export const externalProps = (href) =>
-  /^[./#]/.test(href) ? {} : { target: "_blank", rel: "noopener noreferrer" };
+  /^([./#]|mailto:|tel:)/.test(href)
+    ? {}
+    : { target: "_blank", rel: "noopener noreferrer" };
 
 export const Icon = ({ children }) => (
   <svg

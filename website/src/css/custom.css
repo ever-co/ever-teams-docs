@@ -297,14 +297,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   text-rendering: optimizeLegibility;
-  /* Guards against any single wide child forcing a horizontal scrollbar. */
-  overflow-x: hidden;
-}
-
-@supports (font-variation-settings: normal) {
-  body {
-    font-family: "Inter var", var(--et-font-sans);
-  }
+  /* Guards against any single wide child forcing a horizontal scrollbar.
+     `clip` rather than `hidden`: `hidden` would make the body a scroll
+     container, which stops sticky descendants — navbar, sidebar, ToC —
+     from sticking. */
+  overflow-x: clip;
 }
 
 #__docusaurus {
@@ -1340,7 +1337,7 @@ code {
   border-radius: var(--et-radius-sm);
   padding: 0.12em 0.36em;
   font-weight: 500;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .markdown a code {
@@ -1524,20 +1521,21 @@ pre {
   background-color: var(--et-surface-hover);
 }
 
-/* Wide tables scroll inside their own container instead of the page. */
-.markdown > table,
-.theme-doc-markdown table {
-  display: block;
-  overflow-x: auto;
+/* Wide tables scroll inside their own container instead of the page — at every
+   width, since the content column can be outgrown on desktop just as easily as
+   on a phone, and `overflow-x: clip` on the body would otherwise put those
+   columns out of reach. The container is added around every markdown table by
+   src/theme/MDXComponents.tsx; the table keeps `display: table` so its rows
+   still fill the column when the table fits. */
+.et-table-scroll {
   max-width: 100%;
+  margin-block: 1.75rem;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 997px) {
-  .markdown > table,
-  .theme-doc-markdown table {
-    display: table;
-  }
+.et-table-scroll > table {
+  margin-block: 0;
 }
 
 /* =============================================================================
