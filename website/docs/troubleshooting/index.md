@@ -188,7 +188,7 @@ The Ever Gauzy backend supports **PostgreSQL** (recommended for production) and 
 
 ### Can I white-label Ever Teams?
 
-Yes! Ever Teams supports full white-labeling through environment variables. Customize the app name, logo, colors, company info, and more. See [Configuration](./getting-started/configuration#branding--white-labeling).
+Yes! Ever Teams supports full white-labeling through environment variables. Customize the app name, logo, colors, company info, and more. See [Configuration](/getting-started/configuration#branding--white-labeling).
 
 ### How do I get support?
 

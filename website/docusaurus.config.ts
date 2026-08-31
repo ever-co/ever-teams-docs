@@ -10,12 +10,18 @@ const HAS_ALGOLIA_CREDENTIALS =
 require("dotenv").config();
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
-  onBrokenLinks: "warn",
+  // Fail the build on a broken link instead of warning past it.
+  //
+  // With "warn", Docusaurus detected these and built anyway, which is how four dead links reached
+  // docs.ever.team. Note routeBasePath is "/" and introduction.mdx carries slug:"/", so a link is
+  // resolved against the SERVED route, not the file path -- a file-path-based checker will confirm
+  // links this then rejects. Docusaurus own check is the authority.
+  onBrokenLinks: "throw",
   themes: ["@docusaurus/theme-mermaid"],
   markdown: {
     mermaid: true,
     hooks: {
-      onBrokenMarkdownLinks: "warn",
+      onBrokenMarkdownLinks: "throw",
     },
   },
   plugins: [

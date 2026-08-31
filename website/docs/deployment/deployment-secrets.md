@@ -91,4 +91,4 @@ If any critical secret is missing, the deployment will fail with a clear error m
 
 ## Support
 
-If you need help configuring secrets for a new deployment, contact the development team or refer to the [Support](/docs/advanced-guide/support) section.
+If you need help configuring secrets for a new deployment, contact the development team or refer to the [Support](/advanced-guide/support) section.
