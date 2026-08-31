@@ -17,7 +17,7 @@ Ever Teams is available across multiple platforms. Each application is a separat
 | **[Mobile App](./mobile)**            | `apps/mobile`                      | Expo (React Native)   | ✅ Production |
 | **[Desktop App](./desktop)**          | `apps/desktop` + `apps/server-web` | Electron              | ✅ Production |
 | **[Browser Extension](./extensions)** | `apps/extensions`                  | Plasmo                | ✅ Production |
-| **[Server Web](./server-web)**        | `apps/server-web`                  | Electron + Next.js    | ✅ Production |
+| **Server Web**                        | `apps/server-web`                  | Electron + Next.js    | ✅ Production |
 
 > To embed work & time tracking natively inside your own platform, see [Ever Teams Kit](../kit/index.mdx).
 
