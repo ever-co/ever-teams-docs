@@ -1,0 +1,19 @@
+name: Docs checks
+
+on:
+  pull_request:
+    paths:
+      - 'website/docs/**'
+
+jobs:
+  no-build-time-claims:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No doc tells a self-hoster to rebuild the image to change config
+        run: |
+          if grep -rniE 'rebuild the image|--build-arg NEXT_PUBLIC' website/docs \
+            --exclude=docker-runtime-config.md; then
+            echo "::error::A doc still describes build-time configuration of the web image."
+            exit 1
+          fi

@@ -14,6 +14,7 @@ Ever Teams can be deployed in multiple ways — from one-click cloud deployments
 | Method                                             | Best For                            | Time to Deploy |
 | -------------------------------------------------- | ----------------------------------- | -------------- |
 | **[Docker Quick Start](./docker-quick-start)**     | Quick exploration, self-hosted demo | ⚡ 5 minutes   |
+| **[Runtime Configuration](./docker-runtime-config)** | Configuring a published image     | ⚡ 5 minutes   |
 | **[Docker Production](./docker-dev-vs-prod)**      | Self-hosted production              | 🔧 15 minutes  |
 | **[Vercel](./cloud-platforms#vercel)**             | Serverless, zero-ops                | ⚡ 2 minutes   |
 | **[DigitalOcean](./cloud-platforms#digitalocean)** | Full control, VPS                   | 🔧 30 minutes  |
@@ -32,6 +33,7 @@ For all deployment methods, you need:
 ## Guides
 
 - **[Docker Quick Start](./docker-quick-start)** — Get running with Docker Compose in minutes
+- **[Runtime Configuration](./docker-runtime-config)** — Configure the published image with container environment variables
 - **[Docker Environments](./docker-dev-vs-prod)** — Development vs. production Docker configurations
 - **[Deployment Secrets](./deployment-secrets)** — Managing secrets and sensitive configuration
 - **[Cloud Platforms](./cloud-platforms)** — One-click deployment to Vercel, Render, Railway, and more
