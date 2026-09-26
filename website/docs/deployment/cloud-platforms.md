@@ -2,7 +2,7 @@
 id: cloud-platforms
 title: Cloud Platform Deployment
 sidebar_label: Cloud platforms
-sidebar_position: 4
+sidebar_position: 5
 description: Deploy Ever Teams to Vercel, DigitalOcean, Render, Railway, Fly.io, and other cloud platforms.
 ---
 
@@ -123,3 +123,5 @@ Pre-built Docker images are available:
 | ----------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `everco/ever-teams-webapp`          | [Docker Hub](https://hub.docker.com/r/everco/ever-teams-webapp)                                 |
 | `ghcr.io/ever-co/ever-teams-webapp` | [GitHub Container Registry](https://github.com/orgs/ever-co/packages?tab=packages&q=ever-teams) |
+
+These images are configured entirely with environment variables, on every platform above. Deployment settings are not build arguments — see [Runtime Configuration](./docker-runtime-config).

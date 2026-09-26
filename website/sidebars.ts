@@ -73,6 +73,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "deployment/index",
         "deployment/docker-quick-start",
+        "deployment/docker-runtime-config",
         "deployment/docker-dev-vs-prod",
         "deployment/deployment-secrets",
         "deployment/cloud-platforms",

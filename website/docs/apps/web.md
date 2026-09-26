@@ -71,6 +71,8 @@ The web app includes a comprehensive API proxy layer (`app/api/`) with 32+ route
 
 All configuration is done via environment variables. See [Configuration](../getting-started/configuration) for the complete reference.
 
+The Docker image reads the same variables from the container environment at runtime, so one image serves any deployment — see [Runtime Configuration](../deployment/docker-runtime-config).
+
 ## Build Outputs
 
 | Output         | Use Case                          |
