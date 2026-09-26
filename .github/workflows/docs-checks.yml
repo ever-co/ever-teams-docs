@@ -1,0 +1,31 @@
+name: Docs checks
+
+on:
+  pull_request:
+    paths:
+      - 'website/docs/**'
+      - '.github/workflows/docs-checks.yml'
+
+# The job only reads the checked-out docs.
+permissions:
+  contents: read
+
+jobs:
+  no-build-time-claims:
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned to a commit (v4.4.0) so a retagged action cannot change what runs on pull requests.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      # The web image is built once and configured with container environment variables
+      # (ever-co/ever-teams#4489), so no page may present a rebuild as the way to apply a
+      # configuration change. Rebuilding after a CODE change is still correct, which is why this
+      # matches the instruction forms rather than the words "rebuild the image" on their own.
+      - name: No doc presents a rebuild as the way to change configuration
+        run: |
+          if grep -rniE 'then rebuild the image|rebuild the image to |requires? (an )?image rebuild|--build-arg NEXT_PUBLIC' \
+            website/docs --exclude=docker-runtime-config.md; then
+            echo "::error::A doc still describes build-time configuration of the web image."
+            exit 1
+          fi

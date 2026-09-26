@@ -2,12 +2,14 @@
 id: deployment-secrets
 title: Deployment Secrets Configuration
 sidebar_label: Deployment Secrets
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Deployment Secrets Configuration
 
 This document lists all required GitHub secrets for deploying Ever Teams to different environments.
+
+These secrets are passed to the running container at deploy time, not to the image build. The image is built once and configured at runtime — see [Runtime Configuration](./docker-runtime-config).
 
 ## Critical Secrets (Required for Deployment)
 

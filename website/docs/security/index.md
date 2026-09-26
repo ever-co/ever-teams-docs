@@ -50,6 +50,7 @@ Before deploying to production, ensure:
 - [ ] **Enable CSP headers** — Content Security Policy
 - [ ] **Restrict image domains** — Only allow trusted hosts in `NEXT_PUBLIC_IMAGES_HOSTS`
 - [ ] **Secure OAuth secrets** — Use environment variables, not code
+- [ ] **Keep secrets out of the image** — Pass them as container environment or a Kubernetes Secret, never as build arguments
 - [ ] **Configure SMTP securely** — Use TLS for email transmission
 - [ ] **Set up Sentry** — Monitor for errors and security events
 - [ ] **Regular updates** — Keep dependencies up to date

@@ -2,7 +2,7 @@
 id: docker-dev-vs-prod
 title: Docker Development vs Production
 sidebar_label: Dev vs Prod Mode
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Docker: Development Mode vs Production Mode
