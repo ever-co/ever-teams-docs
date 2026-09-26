@@ -197,11 +197,15 @@ GAUZY_API_SERVER_URL=http://localhost:3000
 NEXT_PUBLIC_GAUZY_API_SERVER_URL=http://localhost:3000
 ```
 
-Then rebuild the image:
+Then restart the application:
 
 ```bash
-docker-compose -f docker-compose.build.yml --env-file .env.docker build
+docker-compose -f docker-compose.build.yml --env-file .env.docker up -d
 ```
+
+:::tip
+No rebuild is needed. The image reads these values from the container environment at runtime, so restarting is enough. See [Runtime Configuration](./docker-runtime-config).
+:::
 
 ### Change the port
 

@@ -8,7 +8,10 @@ description: Environment variables and configuration options for Ever Teams web 
 
 # Configuration
 
-Ever Teams uses environment variables for all runtime configuration. The web application reads these from a `.env` file in the `apps/web/` directory.
+Ever Teams uses environment variables for all configuration, and reads them at runtime.
+
+- **From source**: the web application reads a `.env` file in the `apps/web/` directory.
+- **From the Docker image**: the container environment is read when the server starts and on every page request. Nothing deployment-specific is baked into the image, so one image serves any deployment — see [Runtime Configuration](../deployment/docker-runtime-config).
 
 ## Getting Started
 
@@ -85,11 +88,13 @@ Ever Teams supports social login with multiple providers:
 
 Ever Teams supports CAPTCHA on authentication pages:
 
-| Variable                       | Description                             |
-| ------------------------------ | --------------------------------------- |
-| `NEXT_PUBLIC_CAPTCHA_TYPE`     | CAPTCHA provider (`recaptcha`)          |
-| `NEXT_PUBLIC_CAPTCHA_SITE_KEY` | Site key from your CAPTCHA provider     |
-| `CAPTCHA_SECRET_KEY`           | Secret key for server-side verification |
+| Variable                       | Description                                                              |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_CAPTCHA_TYPE`     | CAPTCHA provider: `recaptcha` (default), `hcaptcha` or `cloudflare`      |
+| `NEXT_PUBLIC_CAPTCHA_SITE_KEY` | Site key from your CAPTCHA provider                                      |
+| `CAPTCHA_SECRET_KEY`           | Secret key for server-side verification                                  |
+
+Set the site key and the secret together, or leave both empty to sign up without a CAPTCHA.
 
 ## Email / SMTP Configuration
 
