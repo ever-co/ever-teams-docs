@@ -98,12 +98,12 @@ Tasks displayed in a tabular list with columns for:
 ### Kanban Board
 
 Visual board with columns for each status. Drag-and-drop tasks between columns to change status.
-See [Kanban Board](./kanban) for details.
+See [Kanban Board](./kanban.md) for details.
 
 ### Calendar View
 
 Tasks plotted on a calendar based on due dates.
-See [Calendar View](./calendar) for details.
+See [Calendar View](./calendar.md) for details.
 
 ## Task Detail View
 

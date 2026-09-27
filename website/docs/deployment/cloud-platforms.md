@@ -24,7 +24,7 @@ Ever Teams supports one-click deployment to several cloud platforms.
 2. Create a new project in [Vercel Dashboard](https://vercel.com/dashboard)
 3. Import your fork
 4. Set the **Root Directory** to `apps/web`
-5. Configure environment variables (see [Configuration](../getting-started/configuration))
+5. Configure environment variables (see [Configuration](../getting-started/configuration.md))
 6. Deploy
 
 ### Key Settings
@@ -124,4 +124,4 @@ Pre-built Docker images are available:
 | `everco/ever-teams-webapp`          | [Docker Hub](https://hub.docker.com/r/everco/ever-teams-webapp)                                 |
 | `ghcr.io/ever-co/ever-teams-webapp` | [GitHub Container Registry](https://github.com/orgs/ever-co/packages?tab=packages&q=ever-teams) |
 
-These images are configured entirely with environment variables, on every platform above. Deployment settings are not build arguments — see [Runtime Configuration](./docker-runtime-config).
+These images are configured entirely with environment variables, on every platform above. Deployment settings are not build arguments — see [Runtime Configuration](./docker-runtime-config.md).

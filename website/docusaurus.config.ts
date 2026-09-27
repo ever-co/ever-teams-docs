@@ -8,6 +8,42 @@ const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME || null;
 const HAS_ALGOLIA_CREDENTIALS =
   ALGOLIA_APP_ID && ALGOLIA_API_KEY && ALGOLIA_INDEX_NAME;
 require("dotenv").config();
+
+// Every locale the site is set up for.
+const ALL_LOCALES = [
+  "en",
+  "fr",
+  "ar",
+  "bg",
+  "zh",
+  "nl",
+  "de",
+  "he",
+  "it",
+  "pl",
+  "pt",
+  "ru",
+  "es",
+];
+// Locales actually advertised: the hreflang alternates, og:locale:alternate and the language dropdown.
+//
+// The image builds English only (`yarn build --locale en` in Dockerfile.everk8s) and no page has a
+// translation, yet all thirteen were declared. Measured on docs.ever.team on 2026-09-27: every page
+// carried thirteen hreflang alternates (fr, ar, bg ...) that all named the English URL, and /fr/,
+// /ar/, /bg/ ... answered 404. DOCS_LOCALES opts locales back in ("all", or a list such as "en,fr").
+// Set it only together with a build that emits those locales, or the dead alternates come back.
+const DOCS_LOCALES = (process.env.DOCS_LOCALES || "en").trim();
+const LOCALES =
+  DOCS_LOCALES === "all"
+    ? ALL_LOCALES
+    : ALL_LOCALES.filter(
+        (locale) =>
+          locale === "en" ||
+          DOCS_LOCALES.split(",")
+            .map((wanted) => wanted.trim())
+            .includes(locale),
+      );
+
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
   // Fail the build on a broken link instead of warning past it.
@@ -70,6 +106,15 @@ const config: Config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
+  // Emit every URL with a trailing slash, matching how the site is actually served.
+  //
+  // The build writes each route as a directory (getting-started/installation/index.html), so nginx
+  // answers the slash-less URL with a 301 to the slash form. Without this flag the canonical,
+  // og:url, hreflang, sitemap and internal links all used the slash-less form, so the canonical
+  // named a redirect instead of the page itself (measured on docs.ever.team on 2026-09-27: 42 of 58
+  // sitemap entries answered 301, e.g. /getting-started/installation declared as canonical by the
+  // page served at /getting-started/installation/).
+  trailingSlash: true,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -85,21 +130,8 @@ const config: Config = {
   i18n: {
     path: "./docs/i18n/",
     defaultLocale: "en",
-    locales: [
-      "en",
-      "fr",
-      "ar",
-      "bg",
-      "zh",
-      "nl",
-      "de",
-      "he",
-      "it",
-      "pl",
-      "pt",
-      "ru",
-      "es",
-    ],
+    // Gated by DOCS_LOCALES -- see LOCALES at the top of this file.
+    locales: LOCALES,
   },
   presets: [
     [
