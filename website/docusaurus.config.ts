@@ -149,6 +149,12 @@ const config: Config = {
         theme: {
           customCss: "./src/css/custom.css",
         },
+        sitemap: {
+          // /search/ is the local search plugin's results page: an empty shell until a query runs,
+          // not a document. It was listed in the sitemap as a page to index (docs.ever.team/sitemap.xml,
+          // 2026-09-27). The page itself stays served.
+          ignorePatterns: ["/search/**"],
+        },
       },
     ],
   ],
@@ -193,12 +199,21 @@ const config: Config = {
             // Support link does not point at.
             activeBaseRegex: "advanced-guide",
           },
-          {
-            type: "localeDropdown",
-            position: "right",
-            className: "header-locale-link",
-            "aria-label": "Change language",
-          },
+          // Shown only when more than one locale is advertised (see LOCALES at the top of this file).
+          //
+          // With English alone the dropdown is a one-entry "English" menu on every page, and on
+          // 404.html its only entry links to /404/, which is itself a 404 (the one 4xx link left in
+          // the English build on 2026-09-27). It comes back by itself once DOCS_LOCALES adds a locale.
+          ...(LOCALES.length > 1
+            ? [
+                {
+                  type: "localeDropdown",
+                  position: "right",
+                  className: "header-locale-link",
+                  "aria-label": "Change language",
+                },
+              ]
+            : []),
           {
             href: "https://github.com/ever-co/ever-teams",
             label: "GitHub",
