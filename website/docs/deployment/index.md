@@ -20,7 +20,7 @@ Ever Teams can be deployed in multiple ways — from one-click cloud deployments
 | **[DigitalOcean](./cloud-platforms#digitalocean)** | Full control, VPS                   | 🔧 30 minutes  |
 | **[Render](./cloud-platforms#render)**             | Simple PaaS                         | ⚡ 5 minutes   |
 | **[Railway](./cloud-platforms#railway)**           | Modern PaaS                         | ⚡ 5 minutes   |
-| **[Fly.io](./cloud-platforms#fly)**                | Edge deployment                     | 🔧 10 minutes  |
+| **[Fly.io](./cloud-platforms#flyio)**              | Edge deployment                     | 🔧 10 minutes  |
 | **[Other](./cloud-platforms)**                     | Netlify, Heroku, Koyeb, Northflank  | Varies         |
 
 ## Prerequisites

@@ -162,6 +162,6 @@ After starting the web application, verify everything is working:
 
 ## Next Steps
 
-- [Configuration](./configuration) — Customize your environment variables
-- [Architecture Overview](../architecture/overview) — Understand the codebase structure
-- [Development Guide](../development/) — Learn about contributing and code conventions
+- [Configuration](./configuration.md) — Customize your environment variables
+- [Architecture Overview](../architecture/overview.md) — Understand the codebase structure
+- [Development Guide](../development/index.md) — Learn about contributing and code conventions
