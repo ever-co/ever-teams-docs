@@ -204,7 +204,7 @@ docker-compose -f docker-compose.build.yml --env-file .env.docker up -d
 ```
 
 :::tip
-No rebuild is needed. The image reads these values from the container environment at runtime, so restarting is enough. See [Runtime Configuration](./docker-runtime-config).
+No rebuild is needed. The image reads these values from the container environment at runtime, so restarting is enough. See [Runtime Configuration](./docker-runtime-config.md).
 :::
 
 ### Change the port

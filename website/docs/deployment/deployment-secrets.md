@@ -9,7 +9,7 @@ sidebar_position: 4
 
 This document lists all required GitHub secrets for deploying Ever Teams to different environments.
 
-These secrets are passed to the running container at deploy time, not to the image build. The image is built once and configured at runtime — see [Runtime Configuration](./docker-runtime-config).
+These secrets are passed to the running container at deploy time, not to the image build. The image is built once and configured at runtime — see [Runtime Configuration](./docker-runtime-config.md).
 
 ## Critical Secrets (Required for Deployment)
 

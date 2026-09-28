@@ -63,7 +63,7 @@ Update the Secret and roll out the Deployment. The image tag does not change.
 
 ## Variable reference
 
-[`.env.docker`](https://github.com/ever-co/ever-teams/blob/develop/.env.docker) in the main repository is the reference list: every runtime variable, its default, and what it does. [Configuration](../getting-started/configuration) groups the same variables by topic.
+[`.env.docker`](https://github.com/ever-co/ever-teams/blob/develop/.env.docker) in the main repository is the reference list: every runtime variable, its default, and what it does. [Configuration](../getting-started/configuration.md) groups the same variables by topic.
 
 Rules worth knowing:
 

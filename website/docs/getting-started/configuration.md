@@ -11,7 +11,7 @@ description: Environment variables and configuration options for Ever Teams web 
 Ever Teams uses environment variables for all configuration, and reads them at runtime.
 
 - **From source**: the web application reads a `.env` file in the `apps/web/` directory.
-- **From the Docker image**: the container environment is read when the server starts and on every page request. Nothing deployment-specific is baked into the image, so one image serves any deployment — see [Runtime Configuration](../deployment/docker-runtime-config).
+- **From the Docker image**: the container environment is read when the server starts and on every page request. Nothing deployment-specific is baked into the image, so one image serves any deployment — see [Runtime Configuration](../deployment/docker-runtime-config.md).
 
 ## Getting Started
 

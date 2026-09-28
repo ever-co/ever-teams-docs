@@ -90,7 +90,7 @@ sequenceDiagram
 
 ## Forgot / Reset Password
 
-When a user forgets their password, they can request a reset link via email. See the dedicated [Forgot Password](./forgot-password) page for full details.
+When a user forgets their password, they can request a reset link via email. See the dedicated [Forgot Password](./forgot-password.md) page for full details.
 
 ### Quick Summary
 

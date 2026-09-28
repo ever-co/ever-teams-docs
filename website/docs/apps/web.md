@@ -65,13 +65,13 @@ The web app includes all Ever Teams features:
 
 ## API Proxy
 
-The web app includes a comprehensive API proxy layer (`app/api/`) with 32+ route groups that forward requests to the Ever Gauzy backend. See [API Layer](../architecture/api-layer) for details.
+The web app includes a comprehensive API proxy layer (`app/api/`) with 32+ route groups that forward requests to the Ever Gauzy backend. See [API Layer](../architecture/api-layer.md) for details.
 
 ## Configuration
 
-All configuration is done via environment variables. See [Configuration](../getting-started/configuration) for the complete reference.
+All configuration is done via environment variables. See [Configuration](../getting-started/configuration.md) for the complete reference.
 
-The Docker image reads the same variables from the container environment at runtime, so one image serves any deployment — see [Runtime Configuration](../deployment/docker-runtime-config).
+The Docker image reads the same variables from the container environment at runtime, so one image serves any deployment — see [Runtime Configuration](../deployment/docker-runtime-config.md).
 
 ## Build Outputs
 
