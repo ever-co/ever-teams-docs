@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Checks the built site: no HTML page may contain a NUL character (U+0000).
  *
@@ -13,19 +12,25 @@
  *
  * Exits 1 naming each page and the text around each NUL, and also when the build holds no HTML at
  * all -- a check that finds nothing to check would otherwise pass by absence.
+ * scripts/check-no-nul-bytes.test.mjs covers each of those exits.
  */
-import {existsSync, readdirSync, readFileSync} from 'node:fs';
-import {join} from 'node:path';
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 
-const buildDir = process.argv[2] || 'build';
+const buildDir = process.argv[2] || "build";
 
+/**
+ * Every .html file under a directory, at any depth.
+ * @param {string} dir the directory to walk
+ * @returns {string[]} the paths of the HTML files
+ */
 function htmlFiles(dir) {
   let found = [];
-  for (const entry of readdirSync(dir, {withFileTypes: true})) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) {
       found.push(...htmlFiles(path));
-    } else if (entry.name.endsWith('.html')) {
+    } else if (entry.name.endsWith(".html")) {
       found.push(path);
     }
   }
@@ -46,17 +51,24 @@ if (files.length === 0) {
 let count = 0;
 let failures = [];
 for (const file of files) {
-  const html = readFileSync(file, 'utf8');
-  for (let at = html.indexOf('\u0000'); at >= 0; at = html.indexOf('\u0000', at + 1)) {
+  const html = readFileSync(file, "utf8");
+  for (
+    let at = html.indexOf("\u0000");
+    at >= 0;
+    at = html.indexOf("\u0000", at + 1)
+  ) {
     count += 1;
-    failures.push(`${file}: ${JSON.stringify(html.slice(Math.max(0, at - 40), at + 20))}`);
+    const context = html.slice(Math.max(0, at - 40), at + 20);
+    failures.push(`${file}: ${JSON.stringify(context)}`);
   }
 }
 
 if (failures.length > 0) {
   console.error(`${count} NUL character(s) in the built HTML:`);
   for (const failure of failures.slice(0, 50)) console.error(`  ${failure}`);
-  if (failures.length > 50) console.error(`  ... and ${failures.length - 50} more`);
+  if (failures.length > 50) {
+    console.error(`  ... and ${failures.length - 50} more`);
+  }
   process.exit(1);
 }
 console.log(`OK: no NUL character in ${files.length} HTML page(s).`);

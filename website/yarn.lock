@@ -7367,12 +7367,12 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-katex@^0.16.47:
-  version "0.16.47"
-  resolved "https://registry.npmjs.org/katex/-/katex-0.16.47.tgz#0a13a42c2deb4f74e61f162d440b9165a548030f"
-  integrity sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==
+katex@^0.16.47, katex@^0.18.11:
+  version "0.18.11"
+  resolved "https://registry.npmjs.org/katex/-/katex-0.18.11.tgz#ca4e9e6db78aeff485c3a1dbe46a08bf196defe9"
+  integrity sha512-yvyz/2VMKqoho/35Hat5w37wIEdWJ5ElVMidTAlWrxr5uW4aBGsEpveTmKh18/zw08v/7lGswCPon4OhqmqrTA==
   dependencies:
-    commander "^8.3.0"
+    commander "^15.0.0"
 
 keyv@^4.5.3:
   version "4.5.4"

@@ -27,7 +27,7 @@ ENV NODE_ENV=production
 RUN yarn build --locale en
 # No U+0000 in any page: React 18 wrote one to three zero bytes before a multi-byte character that
 # straddled its 2048-byte SSR chunk, and docs.ever.team served one (scripts/check-no-nul-bytes.mjs).
-RUN node scripts/check-no-nul-bytes.mjs build
+RUN node --test scripts/ && node scripts/check-no-nul-bytes.mjs build
 
 # ---- Serve stage ----
 FROM nginx:alpine
