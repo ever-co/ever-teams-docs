@@ -7,7 +7,8 @@ const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || null;
 const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME || null;
 const HAS_ALGOLIA_CREDENTIALS =
   ALGOLIA_APP_ID && ALGOLIA_API_KEY && ALGOLIA_INDEX_NAME;
-require("dotenv").config();
+// quiet: dotenv 17+ logs "injected env" on every load; keep the build output as it was.
+require("dotenv").config({ quiet: true });
 
 // Every locale the site is set up for.
 const ALL_LOCALES = [

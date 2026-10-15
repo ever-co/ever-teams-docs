@@ -7,7 +7,7 @@ slug: /
 description: Ever Teams — the open-source Work and Project Management Platform for time tracking, task management, team collaboration, and more.
 ---
 
-import ReactPlayer from "react-player/lazy";
+import ReactPlayer from "react-player";
 
 # Ever Teams — Open Work and Project Management Platform
 
@@ -15,8 +15,11 @@ Welcome to the official **Ever® Teams™** documentation. Ever Teams is a compr
 
 > **Real-Time Clarity, Real-Time Reality™** — Track the progress of your teams' work in real time.
 
+{/* wrapper="div" keeps the 450px box in the server-rendered page: react-player 3 renders no wrapper by default, so the
+    space would appear only once the player loads, and the page below it would jump down. */}
 <ReactPlayer
-  url="https://www.youtube.com/watch?v=vfz1gQiM-VU"
+  src="https://www.youtube.com/watch?v=vfz1gQiM-VU"
+  wrapper="div"
   width="100%"
   height="450px"
 />
