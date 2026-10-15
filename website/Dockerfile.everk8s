@@ -3,14 +3,15 @@
 # Build context is the repo `website/` subdir (Kaniko --context-sub-path=website).
 
 # ---- Build stage ----
-FROM node:20-alpine AS builder
+FROM node:26-alpine AS builder
 
 # Optional npm auth for any private deps (harmless if unused).
 ARG NPM_TOKEN=""
 WORKDIR /app
 
-# Enable corepack/yarn (classic yarn.lock present).
-RUN corepack enable || true
+# Enable corepack/yarn (classic yarn.lock present). Node 25+ no longer bundles corepack (`corepack enable`
+# exits 127 on node:26-alpine), so install it first.
+RUN npm install -g corepack@0.36.0 && corepack enable
 
 # Install dependencies first for better layer caching.
 COPY package.json yarn.lock ./
@@ -24,6 +25,9 @@ RUN if [ -n "$NPM_TOKEN" ]; then \
 COPY . .
 ENV NODE_ENV=production
 RUN yarn build --locale en
+# No U+0000 in any page: React 18 wrote one to three zero bytes before a multi-byte character that
+# straddled its 2048-byte SSR chunk, and docs.ever.team served one (scripts/check-no-nul-bytes.mjs).
+RUN node --test scripts/ && node scripts/check-no-nul-bytes.mjs build
 
 # ---- Serve stage ----
 FROM nginx:alpine

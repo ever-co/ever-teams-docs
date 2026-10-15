@@ -7,7 +7,8 @@ const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || null;
 const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME || null;
 const HAS_ALGOLIA_CREDENTIALS =
   ALGOLIA_APP_ID && ALGOLIA_API_KEY && ALGOLIA_INDEX_NAME;
-require("dotenv").config();
+// quiet: dotenv 17+ logs "injected env" on every load; keep the build output as it was.
+require("dotenv").config({ quiet: true });
 
 // Every locale the site is set up for.
 const ALL_LOCALES = [
@@ -73,6 +74,12 @@ const config: Config = {
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         hashed: true,
+        // The docs are served at the site root (`routeBasePath: '/'`). The plugin indexes only routes under
+        // its docsRouteBasePath, "docs" by default, so it indexed nothing, wrote no search index, and every
+        // search failed with "is not valid JSON" (the 404 page).
+        docsRouteBasePath: "/",
+        // The site has no blog (`blog: false`); without this the plugin looks for a blog/ directory anyway.
+        indexBlog: false,
       },
     ],
     // [require.resolve("@cmfcmf/docusaurus-search-local"), { indexDocs: true }],
