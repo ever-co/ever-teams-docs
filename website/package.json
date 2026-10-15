@@ -46,6 +46,7 @@
     "typescript": "^7.0.2"
   },
   "resolutions": {
+    "mermaid": "^11.17.2",
     "serialize-javascript": "^7.1.2"
   },
   "browserslist": {

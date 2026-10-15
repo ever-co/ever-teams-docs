@@ -15,13 +15,16 @@ Welcome to the official **Ever® Teams™** documentation. Ever Teams is a compr
 
 > **Real-Time Clarity, Real-Time Reality™** — Track the progress of your teams' work in real time.
 
-{/* wrapper="div" keeps the 450px box in the server-rendered page: react-player 3 renders no wrapper by default, so the
-    space would appear only once the player loads, and the page below it would jump down. */}
+{/* Keeps the embed as react-player 2 drew it. wrapper="div": the 450px box is in the server-rendered page (react-player 3
+    renders no wrapper, so the page below jumped down when the player loaded). playsInline: plays in the page on iOS
+    instead of going full screen. cc_load_policy: null: no forced captions (react-player 3 sets cc_load_policy=1). */}
 <ReactPlayer
   src="https://www.youtube.com/watch?v=vfz1gQiM-VU"
   wrapper="div"
   width="100%"
   height="450px"
+  playsInline
+  config={{ youtube: { cc_load_policy: null } }}
 />
 
 ---
