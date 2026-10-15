@@ -74,6 +74,12 @@ const config: Config = {
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         hashed: true,
+        // The docs are served at the site root (`routeBasePath: '/'`). The plugin indexes only routes under
+        // its docsRouteBasePath, "docs" by default, so it indexed nothing, wrote no search index, and every
+        // search failed with "is not valid JSON" (the 404 page).
+        docsRouteBasePath: "/",
+        // The site has no blog (`blog: false`); without this the plugin looks for a blog/ directory anyway.
+        indexBlog: false,
       },
     ],
     // [require.resolve("@cmfcmf/docusaurus-search-local"), { indexDocs: true }],
