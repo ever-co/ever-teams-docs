@@ -33,6 +33,12 @@ The GitHub integration enables bidirectional sync between Ever Teams and GitHub:
 
 #### Configuration
 
+:::info Where these settings live
+The GitHub integration is implemented by the **Ever Gauzy API** (the *Integration Service* and *Webhook Handler* in the [architecture diagram](#integration-architecture) below), not by the Ever Teams web app. The `GAUZY_GITHUB_*` variables below therefore belong to the environment of your Gauzy API server. They are **not** part of the web app's `apps/web/.env.local` file, and they are separate from the GitHub **sign-in** variables described in [Configuration](../getting-started/configuration.md) and [Authentication](./authentication.md).
+
+If you run your own backend, set them where you configure the Gauzy API (see [Running a Self-Hosted Backend](../architecture/backend.md#running-a-self-hosted-backend)).
+:::
+
 | Variable                      | Description                 |
 | ----------------------------- | --------------------------- |
 | `GAUZY_GITHUB_CLIENT_ID`      | GitHub OAuth Client ID      |
