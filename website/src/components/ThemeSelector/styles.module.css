@@ -1,0 +1,64 @@
+/**
+ * Footer theme selector — presentation only.
+ *
+ * A small segmented track. Every colour, radius and duration is a `--et-*`
+ * token from `src/css/custom.css`, so light and dark are inherited rather than
+ * redefined here. The pressed option takes the accent tint the sidebar uses for
+ * its active link; the focus ring is the site-wide one.
+ */
+
+.themeSelector {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--et-border);
+  border-radius: var(--et-radius-md);
+  background-color: var(--et-surface);
+}
+
+.themeOption {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--et-radius-sm);
+  background-color: transparent;
+  color: var(--et-text-muted);
+  cursor: pointer;
+  transition: var(--et-transition);
+}
+
+.themeOption:hover {
+  color: var(--et-text);
+  background-color: var(--et-surface-hover);
+}
+
+.themeOption[aria-pressed="true"] {
+  color: var(--et-accent);
+  background-color: var(--et-accent-subtle);
+}
+
+.themeIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* 44px tap targets on touch devices; the icons stay the same size. */
+@media (pointer: coarse) {
+  .themeOption {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* Forced colours replace the accent tint, so the pressed option gets a border
+   instead, which leaves the focus outline distinct. */
+@media (forced-colors: active) {
+  .themeOption[aria-pressed="true"] {
+    border: 2px solid CanvasText;
+  }
+}
