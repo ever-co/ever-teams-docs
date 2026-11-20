@@ -47,10 +47,18 @@
   height: 1rem;
 }
 
-/* Comfortable tap targets on touch devices. */
+/* 44px tap targets on touch devices; the icons stay the same size. */
 @media (pointer: coarse) {
   .themeOption {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* Forced colours replace the accent tint, so the pressed option gets a border
+   instead, which leaves the focus outline distinct. */
+@media (forced-colors: active) {
+  .themeOption[aria-pressed="true"] {
+    border: 2px solid CanvasText;
   }
 }
