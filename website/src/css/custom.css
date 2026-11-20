@@ -1899,9 +1899,9 @@ article .card p {
   color: var(--et-text);
 }
 
-/* Mark and copyright bracket the credit line: logo hard left, copyright hard
-   right, both centred on the row. They wrap to two lines rather than shrinking
-   when the viewport can't hold both. */
+/* Mark and copyright bracket the credit line: logo hard left, copyright and
+   theme selector hard right, all centred on the row. They wrap to two lines
+   rather than shrinking when the viewport can't hold both. */
 .footer__bottom {
   display: flex;
   align-items: center;
@@ -1911,6 +1911,16 @@ article .card p {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--et-border);
+}
+
+/* The right end of the row: the copyright, then the theme selector
+   (src/components/ThemeSelector). They wrap onto two lines rather than
+   shrinking when the viewport can't hold both. */
+.footer__bottom-end {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
 }
 
 .footer__copyright {
