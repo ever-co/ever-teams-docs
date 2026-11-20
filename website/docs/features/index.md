@@ -19,6 +19,7 @@ Ever Teams provides a rich set of features for work management, time tracking, a
 
 ## Views & Visualization
 
+- **[Choosing a View](./views)** — Compare the list, kanban, calendar, team and project views and pick the right one.
 - **[Kanban Board](./kanban)** — Visual drag-and-drop task board for agile workflows.
 - **[Calendar View](./calendar)** — Timeline-based task and schedule visualization.
 - **[Dashboard & Analytics](./dashboard)** — At-a-glance metrics and team performance overview.

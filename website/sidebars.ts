@@ -38,6 +38,7 @@ const sidebars: SidebarsConfig = {
         "features/teams",
         "features/projects",
         "features/daily-plans",
+        "features/views",
         "features/kanban",
         "features/calendar",
         "features/dashboard",
