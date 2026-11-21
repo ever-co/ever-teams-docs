@@ -153,6 +153,21 @@ Categorize tasks by type:
 
 Custom issue types can be configured in Settings.
 
+## Where to Go Next
+
+Task management connects to the rest of Ever Teams. Follow the page that matches what you want to do next:
+
+| I want to…                                      | Read                                                              |
+| ----------------------------------------------- | ----------------------------------------------------------------- |
+| Track time against a task                       | [Time Tracking & Timer](./time-tracking.md)                       |
+| Group tasks under a project                     | [Projects](./projects.md)                                         |
+| Plan which tasks to work on today               | [Daily Plans](./daily-plans.md)                                   |
+| Move tasks between statuses visually            | [Kanban Board](./kanban.md)                                       |
+| See tasks by due date                           | [Calendar View](./calendar.md)                                    |
+| Change statuses, priorities, sizes or issue types | [Settings → Task Configuration](./settings.md#task-configuration) |
+| Understand roles and permissions                | [Roles & Permissions](./roles-permissions.md)                     |
+| Work with tasks from code                       | [API Reference → Tasks](../api-reference/index.md#tasks)          |
+
 ## Related Hooks
 
 | Hook                | Purpose                   |
