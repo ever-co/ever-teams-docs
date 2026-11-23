@@ -123,7 +123,7 @@ sequenceDiagram
     participant User
     participant Timer as Timer Component
     participant Hook as useTimer Hook
-    participant Store as Recoil Store
+    participant Store as Jotai Store
     participant API as API Proxy
     participant Backend as Gauzy API
 

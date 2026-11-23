@@ -209,7 +209,7 @@ Ever Teams supports full white-label customization:
 | `IS_DESKTOP_APP`                             | —       | Flag for desktop app builds           |
 | `NEXT_PUBLIC_DISABLE_AUTO_REFRESH`           | `false` | Disable automatic data refresh        |
 | `ANALYZE`                                    | `false` | Enable webpack bundle analyzer        |
-| `RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED` | `false` | Enable Recoil duplicate atom warnings |
+| `RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED` | `false` | Left from an earlier version: Recoil is no longer used (the app state is Jotai) |
 
 ## Images Configuration
 
