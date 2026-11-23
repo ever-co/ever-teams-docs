@@ -46,20 +46,24 @@ A timer keeps running when the app is closed, and the app finds it again when it
 
 ### Getting Started
 
+The app runs as a **development build**, so build and install it on the emulator or simulator first:
+
 ```bash
 cd apps/mobile
 yarn install
-yarn start
-```
 
-`yarn start` runs Expo's development server for a **development build** of the app (`expo start --dev-client`). Build and install the app on the emulator or simulator first:
-
-```bash
 # Android
 yarn android
 
 # iOS
 yarn ios
+```
+
+Then, in another terminal, `yarn start` runs Expo's development server for that build (`expo start --dev-client`):
+
+```bash
+cd apps/mobile
+yarn start
 ```
 
 Each of these scripts first writes the app's configuration from your `.env` (`yarn config:mobile`).
@@ -72,12 +76,17 @@ yarn compile
 
 # Unit tests
 yarn test
-
-# End-to-end flows, against an installed build and an API with test data
-yarn test:maestro
 ```
 
-The end-to-end flows sign in, start and stop the timer, correct and discard a run, open the team and a task, and sign out. `apps/mobile/.maestro/README.md` says what a run needs.
+The end-to-end flows sign in, start and stop the timer, correct and discard a run, open the team and a task, and sign out. They run with [Maestro](https://maestro.dev) against an installed build and an API with test data, and they need two values: the app's identifier, and the address of a small helper that gives the flows the sign-in code the API sent by email. From the repository root:
+
+```bash
+maestro test apps/mobile/.maestro \
+  -e APP_ID=<the app's Android package or iOS bundle identifier> \
+  -e HELPER=http://127.0.0.1:3999
+```
+
+`apps/mobile/.maestro/README.md` says how to set up the helper and the test data.
 
 ## Project Structure
 
@@ -117,13 +126,12 @@ eas build --platform android
 
 Mobile builds are automated via GitHub Actions:
 
-- `mobile.before-merge.yml`: the build of a pull request that promotes a release (develop to stage, stage to main)
-- `mobile.dev.yml`: the build of a push to `develop` that touches the mobile app
-- `mobile.stage.yml`, `mobile.prod.yml`: the builds of a push to `main`
 - `mobile.apps.ios.yml`: iOS production build
 - `mobile.apps.android.yml`: Android production build
 - `mobile.apps.stage.ios.yml`: iOS staging build
 - `mobile.apps.stage.android.yml`: Android staging build
+
+Three more workflows check the app without building it: `mobile.dev.yml` (on a push to `develop` that touches the mobile app), `mobile.stage.yml` and `mobile.prod.yml` (on a push to `main`) install the packages and type-check the app. `mobile.before-merge.yml` checks a pull request that promotes a release (develop to stage, stage to main). None of them produces an installable app.
 
 ## Branding
 
