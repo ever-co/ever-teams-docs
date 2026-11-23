@@ -3,7 +3,7 @@ id: work-diary-and-my-week
 title: Work Diary and My Week
 sidebar_label: Work diary and My week
 sidebar_position: 13
-description: Your own day and week in Ever Teams: tracked time, tasks, screenshots, apps, and time against your weekly limit.
+description: Your own day and week in Ever Teams, with tracked time, tasks, screenshots, apps, and time against your weekly limit.
 ---
 
 # Work Diary and My Week
