@@ -49,7 +49,7 @@ The whiteboard inside the web app needs nothing. The live whiteboard needs the B
 
 Two more conditions:
 
-- **Same site.** The Board app must be on the same site as the web app (for example `app.example.com` and `board.example.com`), so that the browser sends it the person's session.
+- **Same site.** The Board app must be on the same site as the web app (for example `app.example.com` and `board.example.com`), so that the browser sends the person's session to the web app when the Board app asks it who is signed in. The session cookies stay on the web app's own address: no cookie domain has to be set for this.
 - **One trusted address.** The web app answers the Board app only from the exact address in `NEXT_PUBLIC_BOARD_APP_DOMAIN`. A request from any other address is refused.
 
 When the address is missing or not valid, **Open whiteboard** opens the whiteboard inside the web app instead.
