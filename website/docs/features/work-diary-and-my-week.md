@@ -42,9 +42,9 @@ Switch the toolbar from **Day** to **Week** to see your week as a sheet, like th
 | In the week sheet | You need |
 | ----------------- | -------- |
 | Type time into a cell | The permission to add time by hand (`ALLOW_MANUAL_TIME`), and an organization that allows manual time |
-| Delete an entry | The permission to delete time (`ALLOW_DELETE_TIME`), and an organization that allows it |
+| Delete an entry | The permission to delete time (`ALLOW_DELETE_TIME`), an organization that allows it, and a sheet you can type time into |
 
-An approved day and a running timer cannot be changed here. Without the permission to add time, the sheet is read-only and says why.
+An approved day and a running timer cannot be changed here. Without the permission to add time, the sheet is read-only and says why: nothing is typed or deleted in it.
 
 People with an organization role, and team managers, also get **Open in Timesheets**, which opens the same days in the team's timesheets.
 
