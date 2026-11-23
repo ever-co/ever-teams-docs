@@ -32,7 +32,15 @@ flowchart LR
     Page -. "Sign in with Ever Teams (popup)" .-> Web
 ```
 
-A page never holds a long-lived secret. It holds a short-lived timer token for one person, and that token only works from a site the organization allows.
+What a page holds depends on how it signs people in:
+
+| Sign-in | What the page holds | Where |
+| --- | --- | --- |
+| A token from your server | A timer token for one person, limited to the timer and to your site, 15 minutes by default | In memory |
+| Sign in with Ever Teams | The same timer token, plus a renewal token that gets the next one from your site only | Timer token in memory, renewal token in the browser's storage |
+| The kit's own sign-in | The person's ordinary access token, with their full access | The browser's storage, readable by every script of your page |
+
+The embed credential itself never reaches a page. Prefer the first two for a site other people use: they give the page a token that can only run that person's timer.
 
 ## What an administrator sets up
 
@@ -77,6 +85,8 @@ Then point the timer at that route:
 
 The element asks your route with a `POST` and your page's cookies, signs the person in with the answer, and asks again shortly before the token expires.
 
+The element does not know when your page changes its signed-in user. If the person signed in to your page can change without a page load, call `signOut()` on each timer once your route answers for the new person (or 401), give `token-url` a new value, or replace the element. Otherwise the timer keeps the previous person's token until it next renews.
+
 :::tip
 `exchangeEmbedToken` sets no time limit of its own. Give it a `fetch` that stops waiting, for example with `AbortSignal.timeout(10_000)`, so a slow API does not hold your own request open.
 :::
@@ -111,6 +121,11 @@ await Promise.all([...document.querySelectorAll('ever-teams-timer')].map((timer)
 ### 3. The kit's own sign-in
 
 Without `sign-in` or `token-url`, the element shows the kit's own form: the person types their Ever Teams email and password, or pastes a token. A person with two-factor sign-in on types the code of their authenticator app, or a recovery code, in the same form.
+
+Two things differ from the other two ways:
+
+- The page sends the sign-in to the API itself, so the API must accept your site's origin in its `ALLOWED_ORIGINS` setting. The allowed sites of **Settings > Workspace > Embeds** do not cover this mode. Without it the sign-in fails in the browser with a network or CORS error.
+- The token it keeps is the person's ordinary access token, in the browser's storage, where every script of your page can read it. Use this mode for a trial or an internal page.
 
 ## The timer element
 
