@@ -45,7 +45,7 @@ The whiteboard inside the web app needs nothing. The live whiteboard needs the B
 | -------- | ---------- |
 | `NEXT_PUBLIC_BOARD_APP_DOMAIN` | The address of the Board app. It must use `https` (plain `http` is accepted for `localhost` in development only) |
 | `NEXT_PUBLIC_BOARD_BACKEND_POST_URL` | Where a board sent with the live-share button is stored |
-| `NEXT_PUBLIC_BOARD_FIREBASE_CONFIG` | The storage for the files of such a board |
+| `NEXT_PUBLIC_BOARD_FIREBASE_CONFIG` | The storage for the files of such a board: the configuration object Firebase gives for a web app (`apiKey`, `authDomain`, `projectId`, `storageBucket` and the rest), as one line of JSON |
 
 Two more conditions:
 
