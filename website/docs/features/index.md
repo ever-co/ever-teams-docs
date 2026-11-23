@@ -15,6 +15,7 @@ Ever Teams provides a rich set of features for work management, time tracking, a
 - **[Task Management](./task-management)** — Create, assign, prioritize, and track tasks with custom workflows.
 - **[Teams & Organizations](./teams)** — Manage organizations, teams, and member roles.
 - **[Projects](./projects)** — Organize work into projects with dedicated views.
+- **[Invoices and Clients](./invoices-and-clients)** — Bill clients for billable tracked time, by email, with online payment.
 - **[Daily Plans](./daily-plans)** — Plan your workday with structured daily task lists.
 
 ## Views & Visualization
