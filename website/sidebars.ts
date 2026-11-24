@@ -40,6 +40,7 @@ const sidebars: SidebarsConfig = {
         "features/projects",
         "features/invoices-and-clients",
         "features/daily-plans",
+        "features/views",
         "features/kanban",
         "features/calendar",
         "features/dashboard",
