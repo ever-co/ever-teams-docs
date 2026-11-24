@@ -17,7 +17,7 @@ The web application (`apps/web`) is the primary and most feature-complete Ever T
 | **Framework**            | Next.js 16 (App Router)             |
 | **UI Library**           | React 19                            |
 | **Styling**              | Tailwind CSS + shadcn/ui + Radix UI |
-| **State Management**     | Recoil                              |
+| **State Management**     | Jotai, with TanStack Query for API data |
 | **Internationalization** | next-intl (13 languages)            |
 | **Authentication**       | NextAuth.js                         |
 | **Error Tracking**       | Sentry                              |

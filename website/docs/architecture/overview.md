@@ -22,7 +22,7 @@ Ever Teams is a modern, full-stack, cross-platform application built with indust
 | **[shadcn/ui](https://ui.shadcn.com)**             | Accessible, customizable component primitives         |
 | **[Radix UI](https://www.radix-ui.com)**           | Headless UI component library                         |
 | **[HeadlessUI](https://headlessui.com)**           | Unstyled, accessible UI components                    |
-| **[Recoil](https://recoiljs.org)**                 | State management for React                            |
+| **[Jotai](https://jotai.org)**                     | State the app shares between components               |
 | **[next-intl](https://next-intl-docs.vercel.app)** | Internationalization (13+ locales)                    |
 | **[Sentry](https://sentry.io)**                    | Error tracking and performance monitoring             |
 
@@ -155,7 +155,7 @@ sequenceDiagram
 sequenceDiagram
     participant U as User
     participant WEB as Web App
-    participant STORE as Recoil Store
+    participant STORE as Jotai Store
     participant API as Gauzy API
 
     U->>WEB: Click Start Timer
@@ -206,7 +206,7 @@ graph LR
 | Decision                          | Rationale                                                                |
 | --------------------------------- | ------------------------------------------------------------------------ |
 | **Next.js API proxy**             | Avoids CORS issues, keeps API keys server-side, enables middleware       |
-| **Recoil for state**              | Fine-grained subscriptions, async selectors, atom-based architecture     |
+| **Jotai for state**               | Small independent atoms: a component re-renders only for the atoms it reads |
 | **Monorepo with shared packages** | Code reuse across web, mobile, and desktop apps                          |
 | **Ever Gauzy as backend**         | Leverages a mature ERP/CRM/HRM platform instead of building from scratch |
 | **Docker Compose for infra**      | One-command deployment of all required services                          |

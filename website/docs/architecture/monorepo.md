@@ -88,7 +88,7 @@ apps/web/
 │   ├── components/        # React components (~690 files)
 │   ├── hooks/             # Custom hooks (~135 hooks)
 │   ├── services/          # API services
-│   ├── stores/            # Recoil state stores (~47 stores)
+│   ├── stores/            # Jotai atoms, by domain
 │   ├── types/             # TypeScript types
 │   ├── lib/               # Libraries and utilities
 │   ├── constants/         # App-level constants

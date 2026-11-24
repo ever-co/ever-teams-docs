@@ -14,6 +14,6 @@ Understand how Ever Teams is designed, from the monorepo structure to the runtim
 - **[System Overview](./overview)** — High-level architecture, tech stack, and how components connect.
 - **[Monorepo Structure](./monorepo)** — How the codebase is organized using NX, Turborepo, and Yarn workspaces.
 - **[Frontend Architecture](./frontend)** — Next.js app structure, routing, components, and state management.
-- **[State Management](./state-management)** — Recoil atoms and selectors for global application state.
+- **[State Management](./state-management)** — Jotai atoms for the state the app shares, TanStack Query for what it reads from the API.
 - **[API Layer](./api-layer)** — REST API client, proxy layer, and backend integration.
 - **[Backend Integration](./backend)** — How Ever Teams connects to the Ever Gauzy API platform.
