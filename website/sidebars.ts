@@ -46,6 +46,7 @@ const sidebars: SidebarsConfig = {
         "features/meet",
         "features/whiteboard",
         "features/timesheets",
+        "features/goals",
         "features/work-diary-and-my-week",
         "features/reports",
         "features/inbox-and-notifications",
