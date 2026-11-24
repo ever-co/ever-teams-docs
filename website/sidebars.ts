@@ -45,6 +45,7 @@ const sidebars: SidebarsConfig = {
         "features/dashboard",
         "features/meet",
         "features/timesheets",
+        "features/work-diary-and-my-week",
         "features/reports",
         "features/integrations",
         "features/roles-permissions",
