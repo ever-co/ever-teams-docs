@@ -32,6 +32,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "features/index",
         "features/authentication",
+        "features/account-security",
         "features/forgot-password",
         "features/time-tracking",
         "features/task-management",
