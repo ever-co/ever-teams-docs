@@ -3,152 +3,147 @@ id: state-management
 title: State Management
 sidebar_label: State management
 sidebar_position: 4
-description: Recoil-based state management in Ever Teams — atoms, selectors, and patterns.
+description: How the Ever Teams web app holds state, with Jotai atoms for what the app shares and TanStack Query for what it reads from the API.
 ---
 
 # State Management
 
-Ever Teams uses **[Recoil](https://recoiljs.org)** for global state management. Recoil provides fine-grained subscriptions, async data fetching via selectors, and an atom-based architecture that integrates naturally with React.
+The web app holds state with two libraries, each for one job:
 
-## Why Recoil?
+- **[Jotai](https://jotai.org)** holds the state the app shares between components: the active team, the running timer, the task list, the open panels.
+- **[TanStack Query](https://tanstack.com/query)** (React Query) reads from the API and keeps what it read: caching, retries, refreshing after a write.
 
-| Feature           | Benefit                                                                                         |
-| ----------------- | ----------------------------------------------------------------------------------------------- |
-| **Atom-based**    | Each piece of state is independent — components only re-render when their specific atoms change |
-| **Derived state** | Selectors compute derived state efficiently                                                     |
-| **Async support** | Built-in async selectors for API data fetching                                                  |
-| **React-native**  | Hooks-first API (`useRecoilState`, `useRecoilValue`)                                            |
+Earlier versions used Recoil. It is no longer used.
+
+## Why two libraries
+
+| Need | Library | What it gives |
+| --- | --- | --- |
+| State many components read | Jotai | Small independent atoms: a component re-renders only for the atoms it reads |
+| Data from the API | TanStack Query | One cache per query key, loading and error states, retries, invalidation after a write |
+| A value kept between visits | Jotai (`atomWithStorage`) | An atom saved in the browser's storage |
 
 ## Store Organization
 
-State stores are organized by domain in `core/stores/`:
+Atoms are organized by domain in `core/stores/`:
 
 ```
 core/stores/
-├── index.ts                         # Re-exports all stores
-│
-├── auth/                            # Authentication state
-│   ├── index.ts
-│   ├── permission.ts                # User permissions
-│   └── workspaces.ts                # Workspace list
-│
-├── common/                          # Shared application state
-│   ├── currencies.ts                # Currency data
-│   ├── data-sync.ts                 # Data synchronization flags
-│   ├── full-width.ts                # Layout width toggle
-│   ├── header-tabs.ts               # Navigation tab state
-│   ├── languages.ts                 # Language/locale state
-│   ├── menu.ts                      # Sidebar menu state
-│   ├── public.ts                    # Public page state
-│   ├── setting.ts                   # Application settings
-│   └── timezones.ts                 # Timezone data
-│
-├── tasks/                           # Task management state
-│   ├── task-filter.ts               # Active filters
-│   ├── task-optimistic-updates.ts   # Optimistic UI updates
-│   └── task-timesheet.ts            # Task-timesheet associations
-│
-├── teams/                           # Team state
-│   ├── all-teams.ts                 # All teams list
-│   ├── collaborative.ts             # Collaborative mode state
-│   ├── organization-team.ts         # Current team details
-│   └── team-tasks.ts               # Team's task list
-│
-├── timer/                           # Timer state
-│   ├── active-timer.ts              # Currently running timer
-│   ├── activity-type.ts             # Activity type selection
-│   ├── time-limits.ts               # Time limit configuration
-│   ├── time-logs.ts                 # Time log records
-│   ├── time-slot.ts                 # Time slot data
-│   └── timer.ts                     # Timer control state
-│
-├── user/                            # User state
-│   ├── avatar.ts                    # User avatar
-│   ├── employee.ts                  # Employee profile
-│   ├── user-organizations.ts        # User's organizations
-│   └── user.ts                      # Current user
-│
-├── daily-plan/                      # Daily planning state
-│   └── daily-plan.ts                # Daily plan data
-│
-├── integrations/                    # Integration state
-│   ├── integration.ts               # Active integrations
-│   ├── integration-github.ts        # GitHub integration state
-│   ├── integration-tenant.ts        # Tenant integration settings
-│   └── integration-types.ts         # Integration type definitions
-│
-├── time-logs.ts                     # Top-level time log state
-├── all-plans-modal.ts               # Plans modal state
-├── assign-task-modal.ts             # Task assignment modal
-└── project-action-modal.ts          # Project action modal
+├── index.ts          # Re-exports the stores
+├── auth/             # Permissions, workspaces
+├── calendar/         # Calendar grid settings
+├── common/           # Shared interface state: menu, languages, time zones, shortcuts, command palette
+├── daily-plan/       # Daily plans
+├── integrations/     # Integrations and their tenant settings
+├── settings/         # Workspace data export
+├── tasks/            # Task filters, views, the task drawer, optimistic updates
+├── teams/            # Teams, the active team, the team's tasks
+├── timer/            # The timer, its notes and labels, time logs, time limits
+└── user/             # The signed-in user, employee, organizations
 ```
+
+`core/stores/README.md` in the repository has the naming rules for new atoms.
 
 ## Common Patterns
 
-### Basic Atom
+### An atom
 
 ```typescript
-import { atom } from "recoil";
+import { atom } from 'jotai';
+import { TTask } from '@/core/types/schemas/task/task.schema';
 
-export const timerRunningState = atom<boolean>({
-  key: "timerRunningState",
-  default: false,
-});
+export const teamTasksState = atom<TTask[]>([]);
+export const activeTeamTaskState = atom<TTask | null>(null);
 ```
 
-### Using Atoms in Components
+An atom has no key to register: it is identified by the variable that holds it.
+
+### Reading and writing an atom
 
 ```typescript
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { timerRunningState } from '@/core/stores';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { activeTeamTaskState, teamTasksState } from '@/core/stores';
 
-function TimerButton() {
-  const [isRunning, setIsRunning] = useRecoilState(timerRunningState);
+function ActiveTaskTitle() {
+	// Read only: the component re-renders when the active task changes
+	const activeTask = useAtomValue(activeTeamTaskState);
+	return <span>{activeTask?.title}</span>;
+}
 
-  return (
-    <button onClick={() => setIsRunning(!isRunning)}>
-      {isRunning ? 'Stop' : 'Start'}
-    </button>
-  );
+function useClearTasks() {
+	// Write only: the component does not re-render when the list changes
+	const setTasks = useSetAtom(teamTasksState);
+	return () => setTasks([]);
 }
 ```
 
-### Hook + Store Pattern
+`useAtom` gives both, like `useState`.
 
-The recommended pattern in Ever Teams is to use a **custom hook** that encapsulates store access and API calls:
+### Reading from the API
+
+A read is a query hook. It names its query key, calls a service, and returns the data with its loading state:
 
 ```typescript
-// core/hooks/activities/use-timer.ts
-export function useTimer() {
-  const [isRunning, setIsRunning] = useRecoilState(timerRunningState);
-  const [timerData, setTimerData] = useRecoilState(timerState);
+import { useQuery } from '@tanstack/react-query';
+import { queryKeys } from '@/core/query/keys';
+import { rolePermissionService } from '@/core/services/client/api/roles/role-permission.service';
 
-  const startTimer = useCallback(async () => {
-    setIsRunning(true); // Optimistic update
-    await startTimerAPI();
-  }, []);
+export function useRolePermissionsQuery(roleId?: string) {
+	const { data, isLoading } = useQuery({
+		queryKey: queryKeys.roles.permissions(roleId!),
+		queryFn: () => rolePermissionService.getRolePermission(roleId!),
+		enabled: !!roleId
+	});
 
-  const stopTimer = useCallback(async () => {
-    setIsRunning(false);
-    const result = await stopTimerAPI();
-    setTimerData(result);
-  }, []);
-
-  return { isRunning, timerData, startTimer, stopTimer };
+	return { rolePermissions: data?.items ?? [], isLoading };
 }
 ```
 
-### Optimistic Updates
+Query keys come from `core/query/keys`, so every hook that reads or refreshes the same data names it the same way.
 
-For responsive UI, Ever Teams uses optimistic updates in stores like `task-optimistic-updates.ts`:
+### From a query to an atom
+
+Many components read the atoms directly. So when data the whole app shares arrives from a query, the hook that owns the query copies it into its atom. A simplified version of what `useLanguageSettings` does:
 
 ```typescript
-// Update state immediately, then sync with server
-const taskOptimisticState = atom({
-  key: "taskOptimisticState",
-  default: new Map(),
-});
+const { data } = useQuery({ queryKey: queryKeys.languages.byScope(tenantId, userId, isSystem), queryFn: fetchLanguages });
+const setLanguages = useSetAtom(languageListState);
+
+useEffect(() => {
+	if (data) {
+		setLanguages(data.items);
+	}
+}, [data, setLanguages]);
 ```
+
+This is the app's convention, on purpose: the atom is the one place the rest of the app reads from, and the query stays the one place that talks to the API. Do not replace it with reads of the query in every component.
+
+### Writing to the API
+
+A write is a mutation. When it settles, it invalidates the queries it changed, and they read again:
+
+```typescript
+import { useMutation } from '@tanstack/react-query';
+
+export function useUpdateRolePermission(roleId?: string) {
+	const { invalidateRolePermissions } = useInvalidateRolePermissions();
+
+	const mutation = useMutation({
+		mutationFn: rolePermissionService.updateRolePermission,
+		onSettled: () => {
+			if (roleId) {
+				invalidateRolePermissions(roleId);
+			}
+		}
+	});
+
+	return { updateRolePermission: mutation.mutate, updateRolePermissionLoading: mutation.isPending };
+}
+```
+
+### Hooks are the interface
+
+Components do not call services or build queries themselves. A custom hook in `core/hooks/` holds the query or the mutation, the atoms it fills and the logic around them, and a component calls the hook.
 
 ## State Dependencies
 
@@ -165,13 +160,10 @@ graph TD
     PERMS --> SETTINGS["Settings"]
 ```
 
-## Data Synchronization
-
-The `common/data-sync.ts` store manages synchronization flags that coordinate data refreshes across components. When one component updates data (e.g., creating a task), the sync flag triggers other components to refetch their data.
-
 ## Best Practices
 
-1. **One concern per atom** — Keep atoms focused on a single piece of state.
-2. **Use hooks as the interface** — Don't access atoms directly in components; wrap them in custom hooks.
-3. **Optimistic updates** — Update the UI immediately, then reconcile with the server response.
-4. **Namespace atom keys** — Use descriptive, unique keys to avoid collisions (e.g., `timer/running`, `tasks/filter`).
+1. **One concern per atom.** Keep an atom to a single piece of state, and name it after what it holds.
+2. **Keep atoms plain.** Logic belongs in the hooks of `core/hooks/`.
+3. **One owner per query.** The hook that owns a query fills its atom; other code reads the atom or calls that hook.
+4. **Invalidate after a write.** A mutation names the queries it changed, so no screen keeps an old answer.
+5. **Use the shared query keys.** A key written by hand in one place is a refresh missed in another.

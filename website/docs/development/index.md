@@ -131,7 +131,7 @@ cd apps/mobile && yarn detox:build && yarn detox:test
 ### Web Application
 
 1. **Browser DevTools** — React DevTools, Network tab
-2. **Recoil DevTools** — For state inspection
+2. **React Query Devtools** — For the data the app has read from the API
 3. **Next.js Debug Mode** — `NODE_OPTIONS='--inspect' yarn start:web:dev`
 4. **Logging** — Client and server-side loggers (see [API Layer](../architecture/api-layer))
 
@@ -148,7 +148,7 @@ The project includes VS Code settings in `.vscode/`:
 | Scenario       | Approach                                                |
 | -------------- | ------------------------------------------------------- |
 | API errors     | Check Network tab, look at proxy route logs             |
-| State issues   | Use Recoil DevTools, add console logs in stores         |
+| State issues   | Use React Query Devtools, add console logs in stores |
 | Build failures | Check `yarn build:web` output, review TypeScript errors |
 | Performance    | Use `ANALYZE=true yarn build:web` for bundle analysis   |
 
