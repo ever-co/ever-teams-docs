@@ -3,12 +3,12 @@ id: account-security
 title: Account Security
 sidebar_label: Account security
 sidebar_position: 2
-description: Two-factor authentication, recovery codes, the list of your sessions, personal API tokens, and leaving teams or deleting your account in Ever Teams.
+description: Two-factor authentication, recovery codes, the list of your sessions, the sites you signed in from, personal API tokens, and leaving teams or deleting your account in Ever Teams.
 ---
 
 # Account Security
 
-This page covers what a person controls about their own account in the web app: a second factor at sign-in, where the account is signed in, the tokens scripts use, and leaving teams or deleting the account.
+This page covers what a person controls about their own account in the web app: a second factor at sign-in, where the account is signed in, the sites allowed to use its timer, the tokens scripts use, and leaving teams or deleting the account.
 
 Everything here is under **Settings**, in the **Account** group.
 
@@ -16,6 +16,7 @@ Everything here is under **Settings**, in the **Account** group.
 | --- | --- |
 | Two-factor authentication, recovery codes | Settings > Security (`/settings/personal/security`) |
 | Sessions | Settings > Profile (`/settings/personal`) |
+| Sites you signed in from | Settings > Security (`/settings/personal/security`) |
 | API tokens | Settings > API tokens (`/settings/personal/api-tokens`) |
 | Leave teams, delete account | Settings > Profile, at the bottom |
 
@@ -65,6 +66,19 @@ An organization can ask its members to sign in with a second factor. The Securit
 Every other browser and app signed in to your account then has to sign in again.
 
 Use it when you signed in on a computer you no longer use, or when you see a session you do not recognize.
+
+## Sites you signed in from
+
+A site that embeds the Ever Teams timer can offer a **Sign in with Ever Teams** button. When you accept, that site may start and stop your timer, and it renews its sign-in by itself for a while.
+
+**Settings > Security > Sites you signed in from** lists those sites: the address of each, and the date until which it can renew its sign-in.
+
+- **End** on a row ends the sign-in from that site, after you confirm. The site can no longer renew it, and at its next renewal it shows its sign-in button again.
+- A site you never signed in from is not listed. With no site at all, the section says so.
+
+Use it for a site you no longer use, or one you do not recognize. Ending a site does not sign you out of Ever Teams, and it does not touch your sessions above.
+
+The section appears only on a server where embedding is available.
 
 ## API tokens
 
