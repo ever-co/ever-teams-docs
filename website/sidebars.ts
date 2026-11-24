@@ -38,6 +38,7 @@ const sidebars: SidebarsConfig = {
         "features/task-management",
         "features/teams",
         "features/projects",
+        "features/invoices-and-clients",
         "features/daily-plans",
         "features/kanban",
         "features/calendar",
