@@ -65,7 +65,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Kit",
-      items: ["kit/index"],
+      items: ["kit/index", "kit/embed-timer"],
     },
     {
       type: "category",
