@@ -16,7 +16,7 @@ The Ever Teams browser extension (`apps/extensions`) enables quick time tracking
 | ------------- | -------------------------------- |
 | **Framework** | [Plasmo](https://www.plasmo.com) |
 | **Manifest**  | Chrome MV3                       |
-| **Browsers**  | Chrome, Firefox, Edge            |
+| **Browsers**  | Chrome, Firefox                  |
 | **Styling**   | Tailwind CSS                     |
 
 ## Features
@@ -63,11 +63,21 @@ yarn dev
 3. Click **Load unpacked**
 4. Select `apps/extensions/build/chrome-mv3-dev`
 
+The steps above load the Chrome (Manifest V3) development build. The same walkthrough also appears in [Installation](../getting-started/installation.md#run-the-browser-extension).
+
 ### Production Build
 
 ```bash
 yarn build
 ```
+
+From the monorepo root, `yarn build:extensions` builds the extension too (see the [build scripts reference](../getting-started/installation.md#build-scripts-reference)).
+
+## Related Pages
+
+- [Time Tracking](../features/time-tracking.md) — time entries record where they were tracked, including from the extension
+- [Applications](./index.md) — how the extension fits with the web, mobile and desktop apps
+- [Monorepo Structure](../architecture/monorepo.md) — where `apps/extensions` sits among the other apps and shared packages
 
 ## CI/CD
 
